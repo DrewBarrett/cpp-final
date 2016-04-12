@@ -6,6 +6,7 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "Button.h"
+#include "TowerMenu.h"
 //Dynamic Link
 //Drew Barrett
 #define ScreenWidth 1024
@@ -30,6 +31,9 @@ int main(int argc, char **argv)
 	timer = al_create_timer(1.0 / 60);
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
+
+    TowerMenu towermenu = TowerMenu();
+
     bool redraw = true;
     bool title = true;
     while (1) {
@@ -58,14 +62,14 @@ int main(int argc, char **argv)
             al_clear_to_color(al_map_rgb(0, 0, 0));
             if(title){
                 al_clear_to_color(al_map_rgb(0, 0, 0));
-                al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 0, ALLEGRO_ALIGN_CENTRE, "Solitaire!");
+                al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 0, ALLEGRO_ALIGN_CENTRE, "not Solitaire!");
                 //al_draw_bitmap(rules, (ScreenWidth / 2) - (al_get_bitmap_width(rules)/2) , 100, 0);
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, ScreenHeight - 150, ALLEGRO_ALIGN_CENTRE,
 					"Press any key to continue or ESC to exit...");
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, ScreenHeight - 100, ALLEGRO_ALIGN_CENTRE,
 					"Created by Drew Barrett");
             }else{
-
+                towermenu.draw();
             }
             al_flip_display();
         }
