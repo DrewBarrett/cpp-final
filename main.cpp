@@ -7,6 +7,7 @@
 #include "allegro5/allegro_ttf.h"
 #include "Button.h"
 #include "TowerMenu.h"
+#include "MapGrid.h"
 //Dynamic Link
 //Drew Barrett
 #define ScreenWidth 1024
@@ -33,6 +34,7 @@ int main(int argc, char **argv)
     al_start_timer(timer);
 
     TowerMenu towermenu = TowerMenu();
+	MapGrid mapgrid = MapGrid();
 
     bool redraw = true;
     bool title = true;
