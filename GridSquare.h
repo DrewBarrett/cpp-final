@@ -58,7 +58,7 @@ class GridSquare
          * \param val New value to set
          */
         void Sethighlighted(bool val) { highlighted = val; }
-        void draw(ALLEGRO_MOUSE_STATE);
+        bool draw(ALLEGRO_MOUSE_STATE);
     protected:
     private:
         int x; //!< Member variable "x"
