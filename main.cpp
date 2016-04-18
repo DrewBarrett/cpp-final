@@ -74,7 +74,9 @@ int main(int argc, char **argv)
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, ScreenHeight - 100, ALLEGRO_ALIGN_CENTRE,
 					"Created by Drew Barrett");
             }else{
+                al_get_mouse_state(&state);
                 towermenu.draw();
+                mapgrid.draw(state);
             }
             al_flip_display();
         }
