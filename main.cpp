@@ -46,6 +46,9 @@ int main(int argc, char **argv)
         if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
             if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
                 break;
+            if (title){
+                title = false;
+            }
         }
         if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
 			if(title){
