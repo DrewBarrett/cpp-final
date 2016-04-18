@@ -8,6 +8,7 @@ class GridSquare
 {
     public:
         /** Default constructor */
+        GridSquare();
         GridSquare(int, int, int);
         /** Access x
          * \return The current value of x
@@ -57,6 +58,7 @@ class GridSquare
          * \param val New value to set
          */
         void Sethighlighted(bool val) { highlighted = val; }
+        void draw(ALLEGRO_MOUSE_STATE);
     protected:
     private:
         int x; //!< Member variable "x"
