@@ -8,6 +8,7 @@
 #include "Button.h"
 #include "TowerMenu.h"
 #include "MapGrid.h"
+#include "GUI.h"
 //Dynamic Link
 //Drew Barrett
 #define ScreenWidth 1024
@@ -33,8 +34,8 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_timer_event_source(timer));
     al_start_timer(timer);
 
-    TowerMenu towermenu = TowerMenu();
-	MapGrid mapgrid = MapGrid();
+    GUI gui = GUI();
+
 
     bool redraw = true;
     bool title = true;
@@ -75,8 +76,8 @@ int main(int argc, char **argv)
 					"Created by Drew Barrett");
             }else{
                 al_get_mouse_state(&state);
-                towermenu.draw();
-                mapgrid.draw(state);
+                gui.Draw(state);
+                //mapgrid.draw(state);
             }
             al_flip_display();
         }

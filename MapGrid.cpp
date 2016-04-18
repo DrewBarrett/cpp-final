@@ -2,20 +2,21 @@
 
 MapGrid::MapGrid()
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < GridHeight; i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < GridWidth; j++)
         {
-            grid[i][j] = GridSquare(i*48, j*48, 48);
+            grid[i][j] = GridSquare(j*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), i*SideLength + 10, SideLength);
         }
     }
 }
 
 void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
 {
-    for (int i = 0; i < 10; i++)
+    hover = NULL;
+    for (int i = 0; i < GridHeight; i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < GridWidth; j++)
         {
             if (grid[i][j].draw(mouse))
             {
@@ -23,5 +24,8 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
             }
         }
     }
-    hover->draw(mouse);
+    if(hover != NULL){
+        hover->draw(mouse);
+    }
+
 }

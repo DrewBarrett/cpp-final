@@ -3,6 +3,9 @@
 #include "GridSquare.h"
 #define ScreenWidth 1024
 #define ScreenHeight 768
+#define GridWidth 10
+#define GridHeight 8
+#define SideLength 70
 
 class MapGrid
 {
@@ -14,7 +17,7 @@ class MapGrid
     protected:
     private:
         GridSquare *hover;
-        GridSquare grid[10][10];
+        GridSquare grid[GridHeight][GridWidth];
 };
 
 #endif // MAPGRID_H
