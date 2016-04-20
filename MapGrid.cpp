@@ -25,6 +25,7 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
         }
     }
     if(hover != NULL){
+
         hover->draw(mouse);
     }
 
