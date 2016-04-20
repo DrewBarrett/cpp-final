@@ -28,5 +28,4 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
 
         hover->draw(mouse);
     }
-
 }
