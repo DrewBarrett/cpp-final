@@ -58,6 +58,7 @@ int main(int argc, char **argv)
 		}
 		if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
 			al_get_mouse_state(&state);
+			gui.MouseClicked();
 		}
         if (event.type == ALLEGRO_EVENT_TIMER){
             redraw = true;

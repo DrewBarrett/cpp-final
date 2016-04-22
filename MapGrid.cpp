@@ -24,8 +24,19 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
             }
         }
     }
+    if(clicked != NULL){
+        clicked->draw(mouse);
+    }
     if(hover != NULL){
-
         hover->draw(mouse);
     }
+}
+
+void MapGrid::SetClicked()
+{
+    if (clicked != NULL)
+    {
+        clicked->SetClicked(false);
+    }
+    clicked = hover;
 }

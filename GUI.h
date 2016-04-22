@@ -10,6 +10,7 @@ class GUI
         /** Default constructor */
         GUI();
         void Draw(ALLEGRO_MOUSE_STATE);
+        void MouseClicked();
     protected:
     private:
         MapGrid mapgrid;

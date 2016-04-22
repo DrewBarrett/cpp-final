@@ -13,9 +13,12 @@ class MapGrid
         /** Default constructor */
         MapGrid();
         void draw(ALLEGRO_MOUSE_STATE);
+        GridSquare* GetHover(){return hover;}
+        void SetClicked();
     protected:
     private:
         GridSquare *hover;
+        GridSquare *clicked = NULL;
         GridSquare grid[GridHeight][GridWidth];
 };
 

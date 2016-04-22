@@ -14,3 +14,12 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     descriptionbox.Draw();
 }
 
+void GUI::MouseClicked()
+{
+    GridSquare *gs = mapgrid.GetHover();
+    if(gs != NULL){
+        mapgrid.SetClicked();
+        gs->SetClicked(true);
+    }
+}
+

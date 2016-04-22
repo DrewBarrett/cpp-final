@@ -58,6 +58,11 @@ class GridSquare
          * \param val New value to set
          */
         void Sethighlighted(bool val) { highlighted = val; }
+        bool GetClicked() { return clicked; }
+        /** Set highlighted
+         * \param val New value to set
+         */
+        void SetClicked(bool val) { clicked = val; }
         bool draw(ALLEGRO_MOUSE_STATE);
     protected:
     private:
@@ -67,6 +72,7 @@ class GridSquare
         bool occupied; //!< Member variable "occupied"
         ALLEGRO_COLOR color; //!< Member variable "color"
         bool highlighted; //!< Member variable "highlighted"
+        bool clicked = false;
 };
 
 #endif // GRIDSQUARE_H
