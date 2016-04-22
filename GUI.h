@@ -2,6 +2,7 @@
 #define GUI_H
 #include "TowerMenu.h"
 #include "MapGrid.h"
+#include "DescriptionBox.h"
 
 class GUI
 {
@@ -13,6 +14,7 @@ class GUI
     private:
         MapGrid mapgrid;
         TowerMenu towermenu;
+        DescriptionBox descriptionbox;
 };
 
 #endif // GUI_H

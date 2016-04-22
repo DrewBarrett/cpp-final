@@ -13,7 +13,6 @@ class MapGrid
         /** Default constructor */
         MapGrid();
         void draw(ALLEGRO_MOUSE_STATE);
-
     protected:
     private:
         GridSquare *hover;
