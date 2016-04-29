@@ -74,6 +74,7 @@ class GridSquare
         ALLEGRO_COLOR color; //!< Member variable "color"
         bool highlighted; //!< Member variable "highlighted"
         bool clicked = false;
+        ALLEGRO_BITMAP *bg;
 };
 
 #endif // GRIDSQUARE_H

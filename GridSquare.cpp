@@ -6,6 +6,7 @@ GridSquare::GridSquare()
     y = 0;
     sideLength = 32;
     highlighted = false;
+    bg = NULL;
 }
 
 GridSquare::GridSquare(int xPos, int yPos, int side)
@@ -15,6 +16,7 @@ GridSquare::GridSquare(int xPos, int yPos, int side)
     sideLength = side;
     color = al_color_name("white");
     highlighted = false;
+    bg = al_load_bitmap("grass.png");
 }
 
 bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
@@ -30,6 +32,9 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
         if(occupied == false){
             color = al_color_name("green");
         }
+    }
+    if (bg != NULL){
+        al_draw_scaled_bitmap(bg, 0, 0, 1000, 1000, x, y, sideLength, sideLength, 0);
     }
     al_draw_rectangle(x, y, x+sideLength, y+sideLength, color, 1);
     return highlighted;
