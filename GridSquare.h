@@ -10,7 +10,7 @@ class GridSquare
     public:
         /** Default constructor */
         GridSquare();
-        GridSquare(int, int, int);
+        GridSquare(int, int, int,ALLEGRO_BITMAP*);
         /** Access x
          * \return The current value of x
          */

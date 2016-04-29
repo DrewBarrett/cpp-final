@@ -9,14 +9,14 @@ GridSquare::GridSquare()
     bg = NULL;
 }
 
-GridSquare::GridSquare(int xPos, int yPos, int side)
+GridSquare::GridSquare(int xPos, int yPos, int side, ALLEGRO_BITMAP *bitmap)
 {
     x = xPos;
     y = yPos;
     sideLength = side;
     color = al_color_name("white");
     highlighted = false;
-    bg = al_load_bitmap("grass.png");
+	bg = bitmap;
 }
 
 bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)

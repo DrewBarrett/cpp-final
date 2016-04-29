@@ -2,11 +2,12 @@
 
 MapGrid::MapGrid()
 {
+	ALLEGRO_BITMAP *bitmap = al_load_bitmap("grass.png");
     for (int i = 0; i < GridHeight; i++)
     {
         for (int j = 0; j < GridWidth; j++)
         {
-            grid[i][j] = GridSquare(j*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), i*SideLength + 10, SideLength);
+            grid[i][j] = GridSquare(j*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), i*SideLength + 10, SideLength, bitmap);
         }
     }
 }
