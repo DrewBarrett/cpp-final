@@ -54,6 +54,8 @@ public:
 	 * \param val New value to set
 	 */
 	void Setheight(int val) { height = val; }
+
+	void SetEnabled(bool val) { enabled = val; }
 protected:
 private:
 	ALLEGRO_FONT *font;
@@ -62,6 +64,7 @@ private:
 	std::string text; //!< Member variable "text"
 	int width; //!< Member variable "width"
 	int height; //!< Member variable "height"
+	bool enabled = true;
 	ALLEGRO_COLOR color;
 	ALLEGRO_BITMAP *img;
 };

@@ -25,15 +25,22 @@ Button::Button(int x1, int y1, ALLEGRO_BITMAP *sprite)
 
 void Button::draw(ALLEGRO_MOUSE_STATE state)
 {
-	color = al_color_name("white");
-	int thickness = checkMouse(state);
+    int thickness = 1;
+    if(enabled){
+        color = al_color_name("white");
+        thickness = checkMouse(state);
+    }
+	else {
+        thickness = 1;
+        color = al_color_name("gray");
+	}
 	al_draw_text(font, al_color_name("white"), x, y, ALLEGRO_ALIGN_CENTRE, text.c_str());
-	al_draw_rectangle(x - width, y, x + width, y + height, color, thickness);
 	if (img != NULL)
     {
-        al_draw_filled_rectangle(x-width, y, x+width, y + height, al_color_name("grey"));
-        al_draw_scaled_bitmap(img, 0, 0, 1000, 1000, x-width, y, width*2, height, 0);
+        al_draw_filled_rectangle(x-width, y, x+width, y + height, al_color_name("gray"));
+        al_draw_scaled_bitmap(img, 0, 0, 1000, 1000, x-width, y, (width*2), height, 0);
     }
+    al_draw_rectangle(x - width, y, x + width, y + height, color, thickness);
 }
 
 int Button::checkMouse(ALLEGRO_MOUSE_STATE state)
