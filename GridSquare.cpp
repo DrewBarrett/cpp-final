@@ -17,6 +17,7 @@ GridSquare::GridSquare(int xPos, int yPos, int side, ALLEGRO_BITMAP *bitmap)
     color = al_color_name("white");
     highlighted = false;
 	bg = bitmap;
+	occupied = false;
 }
 
 bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
