@@ -8,12 +8,13 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include <allegro5/allegro_color.h>
+#include "Button.h"
 class TowerMenu
 {
     public:
         /** Default constructor */
         TowerMenu();
-        void draw();
+        void draw(ALLEGRO_MOUSE_STATE);
         /** Access towers[10]
          * \return The current value of towers[10]
          */
@@ -23,6 +24,7 @@ class TowerMenu
  */
     protected:
     private:
+        Button testTower = Button(50, 15, al_load_bitmap("greenTower.png"));
         //tower towers[10]; //!< Member variable "towers[10]"
 };
 

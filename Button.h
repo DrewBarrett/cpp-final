@@ -7,12 +7,14 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include <allegro5/allegro_color.h>
+#include "iostream"
 
 class Button
 {
 public:
 	/** Default constructor */
 	Button(int, int, std::string);
+	Button(int, int, ALLEGRO_BITMAP*);
 	void draw(ALLEGRO_MOUSE_STATE);
 	int checkMouse(ALLEGRO_MOUSE_STATE);
 	int Getx() { return x; }
@@ -61,6 +63,7 @@ private:
 	int width; //!< Member variable "width"
 	int height; //!< Member variable "height"
 	ALLEGRO_COLOR color;
+	ALLEGRO_BITMAP *img;
 };
 
 #endif // BUTTON_H

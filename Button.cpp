@@ -9,6 +9,18 @@ Button::Button(int x1, int y1, std::string text1)
 	width = text.size() * 20;
 	font = al_load_font("comic.ttf", 20, 0);
 	color = al_color_name("white");
+	img = NULL;
+}
+
+Button::Button(int x1, int y1, ALLEGRO_BITMAP *sprite)
+{
+    x = x1;
+    y = y1;
+    text = "";
+    height = 70;
+    width = 35;
+    img = sprite;
+    font = al_load_font("comic.ttf", 20, 0);
 }
 
 void Button::draw(ALLEGRO_MOUSE_STATE state)
@@ -17,6 +29,11 @@ void Button::draw(ALLEGRO_MOUSE_STATE state)
 	int thickness = checkMouse(state);
 	al_draw_text(font, al_color_name("white"), x, y, ALLEGRO_ALIGN_CENTRE, text.c_str());
 	al_draw_rectangle(x - width, y, x + width, y + height, color, thickness);
+	if (img != NULL)
+    {
+        al_draw_filled_rectangle(x-width, y, x+width, y + height, al_color_name("grey"));
+        al_draw_scaled_bitmap(img, 0, 0, 1000, 1000, x-width, y, width*2, height, 0);
+    }
 }
 
 int Button::checkMouse(ALLEGRO_MOUSE_STATE state)

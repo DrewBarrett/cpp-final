@@ -1,4 +1,5 @@
 #include "GUI.h"
+#include "TowerMenu.h"
 
 GUI::GUI()
 {
@@ -10,7 +11,7 @@ GUI::GUI()
 void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 {
     mapgrid.draw(state);
-    towermenu.draw();
+    towermenu.draw(state);
     descriptionbox.Draw();
 }
 
