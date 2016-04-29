@@ -13,8 +13,9 @@ class Button
 {
 public:
 	/** Default constructor */
+	Button();
 	Button(int, int, std::string);
-	Button(int, int, ALLEGRO_BITMAP*);
+	Button(int, int, int, ALLEGRO_BITMAP*);
 	void draw(ALLEGRO_MOUSE_STATE);
 	int checkMouse(ALLEGRO_MOUSE_STATE);
 	int Getx() { return x; }
@@ -58,7 +59,7 @@ public:
 	void SetEnabled(bool val) { enabled = val; }
 protected:
 private:
-	ALLEGRO_FONT *font;
+	ALLEGRO_FONT *font = al_load_font("comic.ttf", 20, 0);;
 	int x; //!< Member variable "x"
 	int y; //!< Member variable "y"
 	std::string text; //!< Member variable "text"

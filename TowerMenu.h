@@ -9,6 +9,8 @@
 #include "allegro5/allegro_ttf.h"
 #include <allegro5/allegro_color.h>
 #include "Button.h"
+#define GridWidth 2
+#define GridHeight 5
 class TowerMenu
 {
     public:
@@ -24,8 +26,9 @@ class TowerMenu
  */
     protected:
     private:
-        Button testTower = Button(50, 15, al_load_bitmap("greenTower.png"));
+        //Button testTower = Button(50, 15, al_load_bitmap("greenTower.png"));
         //tower towers[10]; //!< Member variable "towers[10]"
+        Button grid[GridHeight][GridWidth];
 };
 
 #endif // TOWERMENU_H
