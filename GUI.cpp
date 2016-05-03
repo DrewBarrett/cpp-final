@@ -23,6 +23,11 @@ void GUI::MouseClicked()
     if(gs != NULL){
         mapgrid.SetClicked();
         gs->SetClicked(true);
+    }else if (towermenu.click()){
+
+    }else{
+        mapgrid.SetClicked();
     }
+
 }
 

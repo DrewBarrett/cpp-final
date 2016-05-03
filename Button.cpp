@@ -28,24 +28,29 @@ Button::Button(int x1, int y1, int w1, ALLEGRO_BITMAP *sprite)
     //font = al_load_font("comic.ttf", 20, 0);
 }
 
-void Button::draw(ALLEGRO_MOUSE_STATE state)
+int Button::draw(ALLEGRO_MOUSE_STATE state)
 {
     int thickness = 1;
+    color = al_color_name("white");
+    int checkedMouse = checkMouse(state);
+    ALLEGRO_COLOR fontcolor = al_color_name("white");
     if(enabled){
-        color = al_color_name("white");
-        thickness = checkMouse(state);
+        thickness = checkedMouse;
     }
 	else {
         thickness = 1;
         color = al_color_name("gray");
+        fontcolor = al_color_name("gray");
 	}
-	al_draw_text(font, al_color_name("white"), x, y, ALLEGRO_ALIGN_CENTRE, text.c_str());
+
+	al_draw_text(font, fontcolor, x, y, ALLEGRO_ALIGN_CENTRE, text.c_str());
 	if (img != NULL)
     {
         al_draw_filled_rectangle(x, y, x+ width, y + height, al_color_name("gray"));
         al_draw_scaled_bitmap(img, 0, 0, 1000, 1000, x, y, width, height, 0);
     }
     al_draw_rectangle(x, y, x + width, y + height, color, thickness);
+    return checkedMouse;
 }
 
 int Button::checkMouse(ALLEGRO_MOUSE_STATE state)

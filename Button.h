@@ -16,7 +16,7 @@ public:
 	Button();
 	Button(int, int, std::string);
 	Button(int, int, int, ALLEGRO_BITMAP*);
-	void draw(ALLEGRO_MOUSE_STATE);
+	int draw(ALLEGRO_MOUSE_STATE);
 	int checkMouse(ALLEGRO_MOUSE_STATE);
 	int Getx() { return x; }
 	/** Set x
@@ -51,6 +51,8 @@ public:
 	 * \return The current value of height
 	 */
 	int Getheight() { return height; }
+	std::string GetTowerTitle() {return towerTitle;}
+	std::string GetTowerDesc() {return towerDesc;}
 	/** Set height
 	 * \param val New value to set
 	 */
@@ -59,13 +61,15 @@ public:
 	void SetEnabled(bool val) { enabled = val; }
 protected:
 private:
-	ALLEGRO_FONT *font = al_load_font("comic.ttf", 20, 0);;
+	ALLEGRO_FONT *font = al_load_font("comic.ttf", 20, 0);
 	int x; //!< Member variable "x"
 	int y; //!< Member variable "y"
 	std::string text; //!< Member variable "text"
 	int width; //!< Member variable "width"
 	int height; //!< Member variable "height"
 	bool enabled = true;
+	std::string towerTitle = "no tower in button";
+	std::string towerDesc = "no tower in button to describe";
 	ALLEGRO_COLOR color;
 	ALLEGRO_BITMAP *img;
 };

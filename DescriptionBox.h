@@ -18,6 +18,7 @@ class DescriptionBox
         void Draw(std::string, std::string);
     protected:
     private:
+        ALLEGRO_FONT *font = al_load_font("comic.ttf", 20, 0);
 };
 
 #endif // DESCRIPTIONBOX_H

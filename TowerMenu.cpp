@@ -14,12 +14,25 @@ TowerMenu::TowerMenu()
 
 void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse)
 {
+    hover = "";
     al_draw_rounded_rectangle(10, 10, 150, ScreenHeight-200, 0, 0, al_color_name("white"), 5);
     for (int i = 0; i < GridHeight; i++)
     {
         for (int j = 0; j < GridWidth; j++)
         {
-            grid[i][j].draw(mouse);
+            if(grid[i][j].draw(mouse)==2){
+                hover = grid[i][j].GetTowerTitle();
+            }
         }
     }
+}
+
+bool TowerMenu::click(){
+    if (hover == "towerIDgoesHere"){
+
+    }else{
+        std::cout << "no tower clicked" << std::endl;
+        return false;
+    }
+    return true;
 }
