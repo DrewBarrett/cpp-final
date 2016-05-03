@@ -12,7 +12,7 @@ MapGrid::MapGrid()
     }
 }
 
-void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
+void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *description)
 {
     hover = NULL;
     for (int i = 0; i < GridHeight; i++)
@@ -27,6 +27,8 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse)
     }
     if(clicked != NULL){
         clicked->draw(mouse);
+        *title = clicked->GetName();
+        *description = clicked->GetDescription();
     }
     if(hover != NULL){
         hover->draw(mouse);

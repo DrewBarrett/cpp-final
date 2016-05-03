@@ -10,9 +10,11 @@ GUI::GUI()
 
 void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 {
-    mapgrid.draw(state);
+    std::string title;
+    std::string description;
+    mapgrid.draw(state, &title, &description);
     towermenu.draw(state);
-    descriptionbox.Draw();
+    descriptionbox.Draw(title, description);
 }
 
 void GUI::MouseClicked()

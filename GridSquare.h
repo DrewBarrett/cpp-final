@@ -64,6 +64,8 @@ class GridSquare
          * \param val New value to set
          */
         void SetClicked(bool val) { clicked = val; }
+        std::string GetName(){return name;}
+        std::string GetDescription() {return description;}
         bool draw(ALLEGRO_MOUSE_STATE);
     protected:
     private:
@@ -74,6 +76,8 @@ class GridSquare
         ALLEGRO_COLOR color; //!< Member variable "color"
         bool highlighted; //!< Member variable "highlighted"
         bool clicked = false;
+        std::string name = "grass";
+        std::string description = "there is nothing on this tile.";
         ALLEGRO_BITMAP *bg;
 };
 

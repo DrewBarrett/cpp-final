@@ -12,7 +12,7 @@ class MapGrid
     public:
         /** Default constructor */
         MapGrid();
-        void draw(ALLEGRO_MOUSE_STATE);
+        void draw(ALLEGRO_MOUSE_STATE, std::string*, std::string*);
         GridSquare* GetHover(){return hover;}
         void SetClicked();
     protected:

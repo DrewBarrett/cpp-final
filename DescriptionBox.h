@@ -8,13 +8,14 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include <allegro5/allegro_color.h>
+#include <iostream>
 
 class DescriptionBox
 {
     public:
         /** Default constructor */
         DescriptionBox();
-        void Draw();
+        void Draw(std::string, std::string);
     protected:
     private:
 };
