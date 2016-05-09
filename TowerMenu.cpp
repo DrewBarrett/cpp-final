@@ -35,7 +35,16 @@ void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse)
 }
 
 void TowerMenu::disable(){
-
+    for(std::vector<Button>::iterator it = towerList.begin(); it != towerList.end(); ++it){
+        it->SetEnabled(false);
+        std::cout << "disabled button" << std::endl;
+    }
+}
+void TowerMenu::enable(){
+    for(std::vector<Button>::iterator it = towerList.begin(); it != towerList.end(); ++it){
+        it->SetEnabled(true);
+        std::cout << "enabled button" << std::endl;
+    }
 }
 
 bool TowerMenu::click(){
