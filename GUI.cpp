@@ -26,8 +26,8 @@ void GUI::MouseClicked()
     }else if (towermenu.click()){
 
     }else{
+        //deselect gridsquare
         mapgrid.SetClicked();
     }
-
 }
 
