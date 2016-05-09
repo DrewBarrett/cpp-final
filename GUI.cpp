@@ -13,6 +13,9 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     std::string title;
     std::string description;
     mapgrid.draw(state, &title, &description);
+    if(mapgrid.IsClicked()){
+        towermenu.disable();
+    }
     towermenu.draw(state);
     descriptionbox.Draw(title, description);
 }

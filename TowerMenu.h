@@ -10,6 +10,7 @@
 #include <allegro5/allegro_color.h>
 #include "Button.h"
 #include <iostream>
+#include <vector>
 #define GridWidth 2
 #define GridHeight 5
 class TowerMenu
@@ -18,6 +19,7 @@ class TowerMenu
         /** Default constructor */
         TowerMenu();
         void draw(ALLEGRO_MOUSE_STATE);
+        void disable();
         bool click();
         /** Access towers[10]
          * \return The current value of towers[10]
@@ -31,6 +33,7 @@ class TowerMenu
         //Button testTower = Button(50, 15, al_load_bitmap("greenTower.png"));
         //tower towers[10]; //!< Member variable "towers[10]"
         Button grid[GridHeight][GridWidth];
+        std::vector<Button> towerList;
         std::string hover;
 };
 

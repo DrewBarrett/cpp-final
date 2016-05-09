@@ -9,14 +9,16 @@ TowerMenu::TowerMenu()
         {
             grid[i][j] = Button(13+(j*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png"));
         }
+        towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png")));
     }
+
 }
 
 void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse)
 {
     hover = "";
     al_draw_rounded_rectangle(10, 10, 150, ScreenHeight-200, 0, 0, al_color_name("white"), 5);
-    for (int i = 0; i < GridHeight; i++)
+    /*for (int i = 0; i < GridHeight; i++)
     {
         for (int j = 0; j < GridWidth; j++)
         {
@@ -24,7 +26,16 @@ void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse)
                 hover = grid[i][j].GetTowerTitle();
             }
         }
+    }*/
+    for(std::vector<Button>::iterator it = towerList.begin(); it != towerList.end(); ++it){
+        if(it->draw(mouse)==2){
+            hover = it->GetTowerTitle();
+        }
     }
+}
+
+void TowerMenu::disable(){
+
 }
 
 bool TowerMenu::click(){
