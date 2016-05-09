@@ -13,11 +13,6 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     std::string title;
     std::string description;
     mapgrid.draw(state, &title, &description);
-    if(!mapgrid.IsClicked()){
-        towermenu.disable();
-    }else{
-        towermenu.enable();
-    }
     towermenu.draw(state);
     descriptionbox.Draw(title, description);
 }
@@ -28,11 +23,13 @@ void GUI::MouseClicked()
     if(gs != NULL){
         mapgrid.SetClicked();
         gs->SetClicked(true);
+        towermenu.enable();
     }else if (towermenu.click()){
 
     }else{
         //deselect gridsquare
         mapgrid.SetClicked();
+        towermenu.disable();
     }
 }
 
