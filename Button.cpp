@@ -17,7 +17,7 @@ Button::Button(int x1, int y1, std::string text1)
 	img = NULL;
 }
 
-Button::Button(int x1, int y1, int w1, ALLEGRO_BITMAP *sprite)
+Button::Button(int x1, int y1, int w1, ALLEGRO_BITMAP *sprite, std::string title)
 {
     x = x1;
     y = y1;
@@ -25,6 +25,7 @@ Button::Button(int x1, int y1, int w1, ALLEGRO_BITMAP *sprite)
     height = w1;
     width = w1;
     img = sprite;
+    towerTitle = title;
     //font = al_load_font("comic.ttf", 20, 0);
 }
 
@@ -47,7 +48,7 @@ int Button::draw(ALLEGRO_MOUSE_STATE state)
 	if (img != NULL)
     {
         al_draw_filled_rectangle(x, y, x+ width, y + height, al_color_name("gray"));
-        al_draw_scaled_bitmap(img, 0, 0, 1000, 1000, x, y, width, height, 0);
+        al_draw_scaled_bitmap(img, 0, 0, al_get_bitmap_width(img), al_get_bitmap_height(img), x, y, width, height, 0);
     }
     al_draw_rectangle(x, y, x + width, y + height, color, thickness);
     return checkedMouse;

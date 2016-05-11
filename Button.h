@@ -15,7 +15,7 @@ public:
 	/** Default constructor */
 	Button();
 	Button(int, int, std::string);
-	Button(int, int, int, ALLEGRO_BITMAP*);
+	Button(int, int, int, ALLEGRO_BITMAP*, std::string);
 	int draw(ALLEGRO_MOUSE_STATE);
 	int checkMouse(ALLEGRO_MOUSE_STATE);
 	int Getx() { return x; }

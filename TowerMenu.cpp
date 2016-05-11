@@ -2,16 +2,17 @@
 
 TowerMenu::TowerMenu()
 {
+
     //Button testTower = Button(15, 15, al_load_bitmap("greenTower.png"));
     for (int i = 0; i < GridHeight; i++)
     {
         for (int j = 0; j < GridWidth; j++)
         {
-            grid[i][j] = Button(13+(j*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png"));
+            //grid[i][j] = Button(13+(j*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png"));
         }
-        towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png")));
+        towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png"),"blank"));
     }
-
+    towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(5*(135/GridWidth)), 135/GridWidth,al_load_bitmap("Tower01.png"), "Dale"));
 }
 
 void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse)
@@ -48,8 +49,8 @@ void TowerMenu::enable(){
 }
 
 bool TowerMenu::click(){
-    if (hover == "towerIDgoesHere"){
-
+    if (hover == "Dale"){
+        std::cout << "dale clicked" << std::endl;
     }else{
         std::cout << "no tower clicked" << std::endl;
         return false;
