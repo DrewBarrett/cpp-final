@@ -32,10 +32,16 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
     if(clicked == true){
         if(occupied == false){
             color = al_color_name("green");
+        }else{
+            color = al_color_name("red");
         }
     }
     if (bg != NULL){
-        al_draw_scaled_bitmap(bg, 0, 0, 1000, 1000, x, y, sideLength, sideLength, 0);
+        al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
+        if(occupied){
+            al_draw_filled_rectangle(x,y,x+sideLength,y+sideLength,al_color_name("gray"));
+        }
+
     }
     al_draw_rectangle(x, y, x+sideLength, y+sideLength, color, 1);
     return highlighted;

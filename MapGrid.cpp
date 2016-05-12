@@ -2,14 +2,26 @@
 
 MapGrid::MapGrid()
 {
+    srand (time(NULL));
 	ALLEGRO_BITMAP *bitmap = al_load_bitmap("grass.png");
     for (int i = 0; i < GridHeight; i++)
     {
         for (int j = 0; j < GridWidth; j++)
         {
             grid[i][j] = GridSquare(j*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), i*SideLength + 10, SideLength, bitmap);
+            if((i == GridHeight - 1)){
+                grid[i][j].Setoccupied(true);
+            }
         }
     }
+    ALLEGRO_BITMAP *arrow = al_load_bitmap("arrow.png");
+    int random = rand()%GridWidth;
+    grid[0][random] = GridSquare(random*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), 0*SideLength + 10, SideLength, arrow);
+    start = &grid[0][random];
+    std::cout << random << " start set" << std::endl;
+    random = rand() % GridWidth;
+    finish = &grid[GridHeight][random];
+    std::cout << random << " finish set" << std::endl;
 }
 
 void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *description)

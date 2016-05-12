@@ -20,6 +20,8 @@ class MapGrid
     private:
         GridSquare *hover;
         GridSquare *clicked = NULL;
+        GridSquare *start = NULL;
+        GridSquare *finish = NULL;
         GridSquare grid[GridHeight][GridWidth];
 };
 
