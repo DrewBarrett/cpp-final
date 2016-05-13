@@ -9,7 +9,7 @@ GridSquare::GridSquare()
     bg = NULL;
 }
 
-GridSquare::GridSquare(int xPos, int yPos, int side, ALLEGRO_BITMAP *bitmap)
+GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap)
 {
     x = xPos;
     y = yPos;
@@ -17,7 +17,8 @@ GridSquare::GridSquare(int xPos, int yPos, int side, ALLEGRO_BITMAP *bitmap)
     color = al_color_name("white");
     highlighted = false;
 	bg = bitmap;
-	occupied = false;
+	//Occupied 0 is Grass, Occupied 1 is the start tile, Occupied 2 is one of the end walls and Occupied 3 is a Dale Tower
+	Setoccupied(type);
 }
 
 bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
@@ -30,19 +31,47 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
         highlighted = false;
     }
     if(clicked == true){
-        if(occupied == false){
+        if(occupied == 0){
             color = al_color_name("green");
         }else{
             color = al_color_name("red");
         }
     }
     if (bg != NULL){
-        al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
-        if(occupied){
+        if (occupied > 1)
+        {
             al_draw_filled_rectangle(x,y,x+sideLength,y+sideLength,al_color_name("gray"));
         }
-
+        if (occupied != 2)
+        {
+            al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
+        }
     }
     al_draw_rectangle(x, y, x+sideLength, y+sideLength, color, 1);
     return highlighted;
+}
+
+void GridSquare::Setoccupied(int val)
+{
+    occupied = val;
+    switch(occupied)
+    {
+        case 3:
+            name = "Gun Tower";
+            description = "A standard tower that shoots the enemies.";
+            bg = al_load_bitmap("tower01.png");
+            break;
+        case 2:
+            name = "Wall";
+            description = "This the the wall you are trying to defend from the Mongolized Weapon Kiwis.";
+            break;
+        case 1:
+            name = "Start";
+            description = "This is where the enemies will spawn in from.";
+            break;
+        default:
+            name = "Grass";
+            description = "There is nothing on this tile.";
+            break;
+    }
 }

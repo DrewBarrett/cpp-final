@@ -36,6 +36,7 @@ class TowerMenu
         Button grid[GridHeight][GridWidth];
         std::vector<Button> towerList;
         std::string hover;
+        bool enabled = false;
 };
 
 #endif // TOWERMENU_H

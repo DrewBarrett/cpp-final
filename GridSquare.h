@@ -10,7 +10,7 @@ class GridSquare
     public:
         /** Default constructor */
         GridSquare();
-        GridSquare(int, int, int,ALLEGRO_BITMAP*);
+        GridSquare(int, int, int, int, ALLEGRO_BITMAP*);
         /** Access x
          * \return The current value of x
          */
@@ -38,11 +38,11 @@ class GridSquare
         /** Access occupied
          * \return The current value of occupied
          */
-        bool Getoccupied() { return occupied; }
+        int Getoccupied() { return occupied; }
         /** Set occupied
          * \param val New value to set
          */
-        void Setoccupied(bool val) { occupied = val; }
+        void Setoccupied(int val);
         /** Access color
          * \return The current value of color
          */
@@ -72,12 +72,12 @@ class GridSquare
         int x; //!< Member variable "x"
         int y; //!< Member variable "y"
         int sideLength; //!< Member variable "sideLength"
-        bool occupied; //!< Member variable "occupied"
+        int occupied; //!< Member variable "occupied"
         ALLEGRO_COLOR color; //!< Member variable "color"
         bool highlighted; //!< Member variable "highlighted"
         bool clicked = false;
-        std::string name = "grass";
-        std::string description = "there is nothing on this tile.";
+        std::string name = "Grass";
+        std::string description = "There is nothing on this tile.";
         ALLEGRO_BITMAP *bg;
 };
 

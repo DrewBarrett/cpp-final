@@ -14,6 +14,7 @@ class MapGrid
         MapGrid();
         void draw(ALLEGRO_MOUSE_STATE, std::string*, std::string*);
         GridSquare* GetHover(){return hover;}
+        GridSquare* GetClicked(){return clicked;}
         void SetClicked();
         bool IsClicked(){return clicked != NULL;}
     protected:

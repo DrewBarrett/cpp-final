@@ -13,6 +13,7 @@ TowerMenu::TowerMenu()
         towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png"),"blank"));
     }
     towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(5*(135/GridWidth)), 135/GridWidth,al_load_bitmap("Tower01.png"), "Dale"));
+    disable();
 }
 
 void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse)
@@ -40,20 +41,29 @@ void TowerMenu::disable(){
         it->SetEnabled(false);
         std::cout << "disabled button" << std::endl;
     }
+    enabled= false;
 }
 void TowerMenu::enable(){
     for(std::vector<Button>::iterator it = towerList.begin(); it != towerList.end(); ++it){
         it->SetEnabled(true);
         std::cout << "enabled button" << std::endl;
     }
+    enabled = true;
 }
 
 bool TowerMenu::click(){
-    if (hover == "Dale"){
-        std::cout << "dale clicked" << std::endl;
-    }else{
-        std::cout << "no tower clicked" << std::endl;
+    if (enabled)
+    {
+        if (hover == "Dale"){
+            std::cout << "dale clicked" << std::endl;
+            return true;
+        }else{
+            std::cout << "no tower clicked" << std::endl;
+            return false;
+        }
+    }
+    else
+    {
         return false;
     }
-    return true;
 }

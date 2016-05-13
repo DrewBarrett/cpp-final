@@ -23,9 +23,16 @@ void GUI::MouseClicked()
     if(gs != NULL){
         mapgrid.SetClicked();
         gs->SetClicked(true);
-        towermenu.enable();
+        if (gs->Getoccupied() == 0)
+        {
+            towermenu.enable();
+        }
+        else
+        {
+            towermenu.disable();
+        }
     }else if (towermenu.click()){
-
+        mapgrid.GetClicked()->Setoccupied(3);
     }else{
         //deselect gridsquare
         mapgrid.SetClicked();
