@@ -1,6 +1,7 @@
 #ifndef MAPGRID_H
 #define MAPGRID_H
 #include "GridSquare.h"
+#include <vector>
 #define ScreenWidth 1024
 #define ScreenHeight 768
 #define GridWidth 10
@@ -17,6 +18,8 @@ class MapGrid
         GridSquare* GetClicked(){return clicked;}
         void SetClicked();
         bool IsClicked(){return clicked != NULL;}
+		bool Pathfind();
+		void DrawPath();
     protected:
     private:
         GridSquare *hover;
@@ -24,6 +27,8 @@ class MapGrid
         GridSquare *start = NULL;
         GridSquare *finish = NULL;
         GridSquare grid[GridHeight][GridWidth];
+		std::vector<GridSquare*> path;
+		int startx = NULL;
 };
 
 #endif // MAPGRID_H

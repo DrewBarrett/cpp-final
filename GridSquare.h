@@ -72,7 +72,7 @@ class GridSquare
         int x; //!< Member variable "x"
         int y; //!< Member variable "y"
         int sideLength; //!< Member variable "sideLength"
-        int occupied; //!< Member variable "occupied"
+        int occupied = 0; //!< Member variable "occupied"
         ALLEGRO_COLOR color; //!< Member variable "color"
         bool highlighted; //!< Member variable "highlighted"
         bool clicked = false;
