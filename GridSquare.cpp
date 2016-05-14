@@ -56,6 +56,10 @@ void GridSquare::Setoccupied(int val)
     occupied = val;
     switch(occupied)
     {
+		case 4:
+			name = "End";
+			description = "This is where the enemies are trying to go";
+			break;
         case 3:
             name = "Gun Tower";
             description = "A standard tower that shoots the enemies.";

@@ -20,6 +20,7 @@ MapGrid::MapGrid()
     start = &grid[0][random];
     std::cout << random << " start set" << std::endl;
     random = rand() % GridWidth;
+	grid[GridHeight-1][random] = GridSquare(random*SideLength + ScreenWidth / 2 - (SideLength*GridWidth / 2), (GridHeight - 1) * SideLength + 10, SideLength, 4, arrow);
     finish = &grid[GridHeight][random];
     std::cout << random << " finish set" << std::endl;
 }
