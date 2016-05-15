@@ -79,8 +79,8 @@ class GridSquare
     private:
         int x; //!< Member variable "x"
         int y; //!< Member variable "y"
-		int gridX = NULL;
-		int gridY = NULL;
+		int gridX = -1;
+		int gridY = -1;
 		int gScore;
 		int fScore;
         int sideLength; //!< Member variable "sideLength"
@@ -91,7 +91,7 @@ class GridSquare
         std::string name = "Grass";
         std::string description = "There is nothing on this tile.";
         ALLEGRO_BITMAP *bg;
-		GridSquare *parent = NULL;
+		GridSquare *parent;
 };
 
 #endif // GRIDSQUARE_H

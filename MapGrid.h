@@ -33,8 +33,8 @@ class MapGrid
 		std::vector<GridSquare*> path;
 		std::vector<int> pathx;
 		std::vector<int> pathy;
-		int startx = NULL;
-		int finishx = NULL;
+		int startx = -1;
+		int finishx = -1;
 };
 
 #endif // MAPGRID_H

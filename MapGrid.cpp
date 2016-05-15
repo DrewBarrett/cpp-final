@@ -119,7 +119,7 @@ bool MapGrid::Pathfind()
 	//As long as this is consistent it doesnt matter if it is correct
 	start->SetFScore(EstimateCostToFinish(start->GetGridX(), start->GetGridY()));
 
-	while (openSet.size() > 0) 
+	while (openSet.size() > 0)
 	{
 		GridSquare *current = openSet[0];
 		int CurrentPos = 0;
@@ -132,9 +132,9 @@ bool MapGrid::Pathfind()
 				CurrentPos = i;
 			}
 		}
-		if (current == finish) 
+		if (current == finish)
 		{
-			
+
 			int cx = current->GetGridX();
 			int cy = current->GetGridY();
 			std::cout << current->Getx() << " current x " << cx << cy << std::endl;
@@ -155,7 +155,7 @@ bool MapGrid::Pathfind()
 		std::vector<GridSquare*> neighbors;
 		int gridY = current->GetGridY();
 		int gridX = current->GetGridX();
-		if (gridY > 0) 
+		if (gridY > 0)
 		{
 			//add above square to neighbors
 			neighbors.push_back(&grid[gridY-1][gridX]);
@@ -249,12 +249,17 @@ void MapGrid::DrawPath()
 	{
 		//std::cout << grid[GridHeight - 1][finishx].GetGridX() << " " << grid[GridHeight - 1][finishx].Getx() << std::endl;
 		//std::cout << grid[GridHeight - 1][finishx].GetParent()->GetGridX() << " " << grid[GridHeight - 1][finishx].GetParent()->Getx() << std::endl;
-		//std::cout << "drawing path circle" << path[i]->Getx() << std::endl;
+		std::cout << "drawing path circle" << std::endl;
+		std::cout << pathx.size() << " " << pathy.size() << std::endl;
+		std::cout << pathy.at(i) << std::endl;
+		std::cout << pathx.at(i) << std::endl;
+		std::cout << grid[pathy[i]][pathx[i]].Getx() << std::endl;
 		al_draw_filled_circle(grid[pathy[i]][pathx[i]].Getx() + (SideLength/2), grid[pathy[i]][pathx[i]].Gety() + (SideLength /2), SideLength / 4, al_color_name("red"));
+		std::cout << "drawed path circle" << std::endl;
 	}
 }
 
-int MapGrid::EstimateCostToFinish(int x, int y) 
+int MapGrid::EstimateCostToFinish(int x, int y)
 {
 	std::cout << x << " " << y << std::endl;
 	std::cout << (std::abs(x - finish->GetGridX()) + std::abs(y - finish->GetGridY())) << std::endl;
