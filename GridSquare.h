@@ -70,8 +70,13 @@ class GridSquare
          * \param val New value to set
          */
         void SetClicked(bool val) { clicked = val; }
-		void SetParent(GridSquare *val) { parent = val; }
-		GridSquare* GetParent() { return  parent; }
+		//void SetParent(GridSquare *val) { parent = val; }
+		void SetParentX(int val) { parentX = val; }
+		void SetParentY(int val) { parentY = val; }
+		int GetParentX() { return parentX; }
+		int GetParentY() { return parentY; }
+		bool IsParentNull() { return parentX == NULL; }
+		//GridSquare* GetParent() { return  parent; }
         std::string GetName(){return name;}
         std::string GetDescription() {return description;}
         bool draw(ALLEGRO_MOUSE_STATE);
@@ -91,7 +96,9 @@ class GridSquare
         std::string name = "Grass";
         std::string description = "There is nothing on this tile.";
         ALLEGRO_BITMAP *bg;
-		GridSquare *parent;
+		//GridSquare *parent = NULL;
+		int parentX = NULL;
+		int parentY = NULL;
 };
 
 #endif // GRIDSQUARE_H

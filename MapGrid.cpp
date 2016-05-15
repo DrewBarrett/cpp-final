@@ -44,7 +44,15 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *d
     if(clicked != NULL){
         clicked->draw(mouse);
         *title = clicked->GetName();
-        *description = clicked->GetDescription();
+		*description = clicked->GetDescription();
+		if (!clicked->IsParentNull()) {
+			std::string newDesc = "";
+			std::stringstream sstm;
+			sstm << "Parent X: " << clicked->GetParentX() << " Parent Y: " << clicked->GetParentY() << " My fScore: " << clicked->GetFScore() << " my gScore: " << clicked->GetGScore();
+			newDesc = sstm.str();
+			*description = newDesc;
+		}
+        
     }
     if(hover != NULL){
         hover->draw(mouse);
@@ -126,7 +134,7 @@ bool MapGrid::Pathfind()
 		//set the current square to the node in openSet with the lowest fScore
 		for (int i = 0; i < openSet.size(); i++)
 		{
-			if (openSet[i]->GetFScore() > current->GetFScore())
+			if (openSet[i]->GetFScore() < current->GetFScore())
 			{
 				current = openSet[i];
 				CurrentPos = i;
@@ -135,16 +143,51 @@ bool MapGrid::Pathfind()
 		if (current == finish)
 		{
 
-			int cx = current->GetGridX();
-			int cy = current->GetGridY();
-			std::cout << current->Getx() << " current x " << cx << cy << std::endl;
-			std::cout << current->GetParent()->Getx() << " current x " << current->GetParent()->GetGridX() << std::endl;
+			//int cx = current->GetGridX();
+			//int cy = current->GetGridY();
+			int cx = finishx;
+			int cy = GridHeight - 1;
+			
 			//path.clear();
-			pathx.clear();
-			pathy.clear();
+			try
+			{
+				//std::cout << current->Getx() << " current x " << cx << cy << std::endl;
+				//std::cout << current->GetParent()->Getx() << " current x " << current->GetParent()->GetGridX() << std::endl;
+				pathx.clear();
+				pathy.clear();
+				pathx.push_back(cx);
+				pathy.push_back(cy);
+				std::cout << "pushed back final point at " << cx << " " << cy << std::endl;
+				//while (!grid[cy][cx].IsParentNull()) {
+				//	//current = current->GetParent();
+				//	cx = grid[cy][cx].GetParentX();
+				//	cy = grid[cy][cx].GetParentY();
+				//	//std::cout << grid[cy][cx].GetParentX() << " " << grid[cy][cx].GetParentY() << std::endl;
+				//	std::cout << "parent of last node is " << cx << " " << cy << std::endl;
+				//	pathx.push_back(cx);
+				//	pathy.push_back(cy);
+				//}
+				while (cx != startx || cy != 0) {
+					int newcx = grid[cy][cx].GetParentX();
+					int newcy = grid[cy][cx].GetParentY();
+					//std::cout << grid[cy][cx].GetParentX() << " " << grid[cy][cx].GetParentY() << std::endl;
+					std::cout << "last node was" << cx << " " << cy << " and its parent is " << newcx << " " << newcy<< std::endl;
+					cx = newcx;
+					cy = newcy;
+					pathx.push_back(cx);
+					pathy.push_back(cy);
+				}
+				for (int i = 0; i < pathx.size(); i++)
+				{
+					std::cout << pathx[i] << " :x y: " << pathy[i] << std::endl;
+				}
+			}
+			catch (...)
+			{
+				std::cout << "ERROR";
+			}
 			//path.push_back(&grid[current->GetGridY()][current->GetGridX()]);
-			pathx.push_back(cx);
-			pathy.push_back(cy);
+			
 			//ReconstructPath();
 			std::cout << "Found path!" << std::endl;
 			return true;
@@ -152,42 +195,63 @@ bool MapGrid::Pathfind()
 		openSet.erase(openSet.begin()+CurrentPos);
 		closedSet.push_back(current);
 		//generate vector of neighbors
-		std::vector<GridSquare*> neighbors;
+		//std::vector<GridSquare*> neighbors;
+		std::vector<int> neighborX;
+		std::vector<int> neighborY;
 		int gridY = current->GetGridY();
 		int gridX = current->GetGridX();
 		if (gridY > 0)
 		{
 			//add above square to neighbors
-			neighbors.push_back(&grid[gridY-1][gridX]);
-			std::cout << "pushed back neigbor at " << gridY - 1 << " " << gridX << std::endl;
+			if (grid[gridY - 1][gridX].Getoccupied() == 0 || grid[gridY - 1][gridX].Getoccupied() == 4)
+			{
+				neighborX.push_back(grid[gridY - 1][gridX].GetGridX());
+				neighborY.push_back(grid[gridY - 1][gridX].GetGridY());
+				//std::cout << "the approaching neighbor reported its xy as: " << grid[gridY - 1][gridX].GetGridX() << " " << grid[gridY - 1][gridX].GetGridY() << std::endl;
+				std::cout << "pushed back neigbor at " << gridX << " " << gridY - 1 << std::endl;
+			}
 		}
 		if (gridX > 0)
 		{
 			//add left square to neighbors
-			neighbors.push_back(&grid[gridY][gridX-1]);
-			std::cout << "pushed back neigbor at " << gridY << " " << gridX - 1 << std::endl;
+			if (grid[gridY][gridX - 1].Getoccupied() == 0 || grid[gridY][gridX - 1].Getoccupied() == 4)
+			{
+				neighborX.push_back(grid[gridY][gridX - 1].GetGridX());
+				neighborY.push_back(grid[gridY][gridX - 1].GetGridY());
+				std::cout << "pushed back neigbor at " << gridX - 1  << " " <<  gridY << std::endl;
+			}
 		}
 		if (gridX < GridWidth)
 		{
 			//add right square to neighbors
-			neighbors.push_back(&grid[gridY][gridX+1]);
-			std::cout << "pushed back neigbor at " << gridY << " " << gridX + 1 << std::endl;
+			if (grid[gridY][gridX + 1].Getoccupied() == 0 || grid[gridY][gridX + 1].Getoccupied() == 4)
+			{
+				neighborX.push_back(grid[gridY][gridX + 1].GetGridX());
+				neighborY.push_back(grid[gridY][gridX + 1].GetGridY());
+				std::cout << "pushed back neigbor at " << gridX + 1 << " " << gridY << std::endl;
+			}
 		}
 		if (gridY < GridHeight - 1)
 		{
 			//add below square to neighbors
-			neighbors.push_back(&grid[gridY + 1][gridX]);
-			std::cout << "pushed back neigbor at " << gridY + 1 << " " << gridX << std::endl;
+			//neighbors.push_back(&grid[gridY + 1][gridX]);
+			if (grid[gridY + 1][gridX].Getoccupied() == 0 || grid[gridY + 1][gridX].Getoccupied() == 4)
+			{
+				neighborX.push_back(grid[gridY + 1][gridX].GetGridX());
+				neighborY.push_back(grid[gridY + 1][gridX].GetGridY());
+				std::cout << "pushed back neigbor at " << gridX << " " << gridY + 1 << std::endl;
+			}
 		}
 		int bestNeighborGScore = NULL;
-		for (int i = 0; i < neighbors.size(); i++)
+		for (int i = 0; i < neighborX.size(); i++)
 		{
 			//check to make sure we havent checked this square already
 			bool checked = false;
 			for (int j = 0; j < closedSet.size(); j++)
 			{
-				if (neighbors[i] == closedSet[j])
+				if (neighborX[i] == closedSet[j]->GetGridX() && neighborY[i] == closedSet[j]->GetGridY())
 				{
+					std::cout << "the neighbor at " << neighborX[i] << " " << neighborY[i] << " has been checked already... on to the next one!" << std::endl;
 					checked = true;
 				}
 			}
@@ -198,29 +262,36 @@ bool MapGrid::Pathfind()
 			bool open = false;
 			for (int j = 0; j < openSet.size(); j++)
 			{
-				if (neighbors[i] == openSet[j])
+				if (neighborX[i] == openSet[j]->GetGridX() && neighborY[i] == openSet[j]->GetGridY())
 				{
+					std::cout << "the neigbor at " << neighborX[i] << " " << neighborY[i] << "Is in the open set at " << j << " " << openSet[j]->GetGridX() << " " << openSet[j]->GetGridY() << std::endl;
 					open = true;
 				}
 			}
 			if (!open)
 			{
 				//add this to open nodes
-				openSet.push_back(neighbors[i]);
+				std::cout << "adding the neigbor at " << neighborX[i] << " " << neighborY[i] << " to the open set";
+				openSet.push_back(&grid[neighborY[i]][neighborX[i]]);
 			}
 			else if (bestNeighborGScore != NULL && neighborGScore >= bestNeighborGScore)
 			{
 				//not a better path
+				std::cout << "This is not a better path at " << neighborX[i] << " " << neighborY[i] << std::endl;
 				continue;
 			}
 
 			//this is currently the best path!
 			try
 			{
-				neighbors[i]->SetParent(current);
-				neighbors[i]->SetGScore(neighborGScore);
+				//grid[neighborY[i]][neighborX[i]].SetParent(current);
+				grid[neighborY[i]][neighborX[i]].SetParentX(current->GetGridX());
+				grid[neighborY[i]][neighborX[i]].SetParentY(current->GetGridY());
+				std::cout << "set parent xy for " << neighborX[i] << " " << neighborY[i] << "to " << current->GetGridX() << " " << current->GetGridY() << std::endl;
+				std::cout << "confirming last statement for " << neighborX[i] << " " << neighborY[i] << " parrent x and y are: " << grid[neighborY[i]][neighborX[i]].GetParentX() << " " << grid[neighborY[i]][neighborX[i]].GetParentY() << std::endl;
+				grid[neighborY[i]][neighborX[i]].SetGScore(neighborGScore);
 				bestNeighborGScore = neighborGScore;
-				neighbors[i]->SetFScore(neighborGScore + EstimateCostToFinish(neighbors[i]->GetGridX(), neighbors[i]->GetGridY()));
+				grid[neighborY[i]][neighborX[i]].SetFScore(neighborGScore + EstimateCostToFinish(neighborX[i], neighborY[i]));
 			}
 			catch (const std::exception&)
 			{
@@ -236,11 +307,11 @@ bool MapGrid::Pathfind()
 
 void MapGrid::ReconstructPath()
 {
-	finish = &grid[GridHeight - 1][finishx];
-	path.clear();
-	std::cout << "reconstructed path!" << std::endl;
-	path.push_back(finish);
-	path.push_back(finish->GetParent());
+	//finish = &grid[GridHeight - 1][finishx];
+	//path.clear();
+	//std::cout << "reconstructed path!" << std::endl;
+	//path.push_back(finish);
+	//path.push_back(finish->GetParent());
 }
 
 void MapGrid::DrawPath()
@@ -249,19 +320,19 @@ void MapGrid::DrawPath()
 	{
 		//std::cout << grid[GridHeight - 1][finishx].GetGridX() << " " << grid[GridHeight - 1][finishx].Getx() << std::endl;
 		//std::cout << grid[GridHeight - 1][finishx].GetParent()->GetGridX() << " " << grid[GridHeight - 1][finishx].GetParent()->Getx() << std::endl;
-		std::cout << "drawing path circle" << std::endl;
-		std::cout << pathx.size() << " " << pathy.size() << std::endl;
-		std::cout << pathy.at(i) << std::endl;
-		std::cout << pathx.at(i) << std::endl;
-		std::cout << grid[pathy[i]][pathx[i]].Getx() << std::endl;
+		//std::cout << "drawing path circle" << std::endl;
+		//std::cout << pathx.size() << " " << pathy.size() << std::endl;
+		//std::cout << pathy.at(i) << std::endl;
+		//std::cout << pathx.at(i) << std::endl;
+		//std::cout << grid[pathy[i]][pathx[i]].Getx() << std::endl;
 		al_draw_filled_circle(grid[pathy[i]][pathx[i]].Getx() + (SideLength/2), grid[pathy[i]][pathx[i]].Gety() + (SideLength /2), SideLength / 4, al_color_name("red"));
-		std::cout << "drawed path circle" << std::endl;
+		//std::cout << "drawed path circle" << std::endl;
 	}
 }
 
 int MapGrid::EstimateCostToFinish(int x, int y)
 {
 	std::cout << x << " " << y << std::endl;
-	std::cout << (std::abs(x - finish->GetGridX()) + std::abs(y - finish->GetGridY())) << std::endl;
-	return (std::abs(x - finish->GetGridX()) + std::abs(y - finish->GetGridY()));
+	std::cout << (std::abs(x - finishx) + std::abs(y - (GridHeight-1))) << std::endl;
+	return (std::abs(x - finishx) + std::abs(y - (GridHeight - 1)));
 }

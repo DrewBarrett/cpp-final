@@ -3,6 +3,7 @@
 #include "GridSquare.h"
 #include <vector>
 #include <cmath>
+#include <sstream>
 #define ScreenWidth 1024
 #define ScreenHeight 768
 #define GridWidth 10
