@@ -23,7 +23,7 @@ void GUI::MouseClicked()
     if(gs != NULL){
         mapgrid.SetClicked();
         gs->SetClicked(true);
-		mapgrid.Pathfind();
+		//mapgrid.Pathfind();
         if (gs->Getoccupied() == 0)
         {
             towermenu.enable();
@@ -34,6 +34,10 @@ void GUI::MouseClicked()
         }
     }else if (towermenu.click()){
         mapgrid.GetClicked()->Setoccupied(3);
+		if (!mapgrid.Pathfind()) {
+			//building a tower here would cause the pathfinding to error! Hopefully because there is no available path...
+			mapgrid.GetClicked()->Setoccupied(0);
+		}
     }else{
         //deselect gridsquare
         mapgrid.SetClicked();

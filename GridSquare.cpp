@@ -78,6 +78,7 @@ void GridSquare::Setoccupied(int val)
         default:
             name = "Grass";
             description = "There is nothing on this tile.";
+			bg = al_load_bitmap("grass.png");
             break;
     }
 }
