@@ -9,10 +9,12 @@ GridSquare::GridSquare()
     bg = NULL;
 }
 
-GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap)
+GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap, int gx, int gy)
 {
     x = xPos;
     y = yPos;
+	gridX = gx;
+	gridY = gy;
     sideLength = side;
     color = al_color_name("white");
     highlighted = false;

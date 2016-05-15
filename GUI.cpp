@@ -23,6 +23,7 @@ void GUI::MouseClicked()
     if(gs != NULL){
         mapgrid.SetClicked();
         gs->SetClicked(true);
+		mapgrid.Pathfind();
         if (gs->Getoccupied() == 0)
         {
             towermenu.enable();
