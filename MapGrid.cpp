@@ -221,7 +221,7 @@ bool MapGrid::Pathfind()
 				std::cout << "pushed back neigbor at " << gridX - 1  << " " <<  gridY << std::endl;
 			}
 		}
-		if (gridX < GridWidth)
+		if (gridX < GridWidth - 1)
 		{
 			//add right square to neighbors
 			if (grid[gridY][gridX + 1].Getoccupied() == 0 || grid[gridY][gridX + 1].Getoccupied() == 4)

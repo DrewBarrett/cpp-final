@@ -35,6 +35,7 @@ void GUI::MouseClicked()
     }else if (towermenu.click()){
         mapgrid.GetClicked()->Setoccupied(3);
 		if (!mapgrid.Pathfind()) {
+			//TODO: only call pathfinding if the tile is in the way of the path.
 			//building a tower here would cause the pathfinding to error! Hopefully because there is no available path...
 			mapgrid.GetClicked()->Setoccupied(0);
 		}

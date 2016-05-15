@@ -66,6 +66,7 @@ void GridSquare::Setoccupied(int val)
             name = "Gun Tower";
             description = "A standard tower that shoots the enemies.";
             bg = al_load_bitmap("tower01.png");
+			//TODO: dont reload the bitmap every time!
             break;
         case 2:
             name = "Wall";
