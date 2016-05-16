@@ -25,7 +25,7 @@ MapGrid::MapGrid()
     finish = &grid[GridHeight][random];//broken
 	finishx = random;
     std::cout << random << " finish set" << std::endl;
-	Pathfind();
+	//Pathfind();
 }
 
 void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *description)

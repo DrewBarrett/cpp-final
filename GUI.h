@@ -3,6 +3,7 @@
 #include "TowerMenu.h"
 #include "MapGrid.h"
 #include "DescriptionBox.h"
+#include "WavePanel.h"
 
 class GUI
 {
@@ -16,6 +17,7 @@ class GUI
         MapGrid mapgrid;
         TowerMenu towermenu;
         DescriptionBox descriptionbox;
+		WavePanel wavepanel;
 };
 
 #endif // GUI_H

@@ -3,9 +3,11 @@
 
 GUI::GUI()
 {
-    mapgrid = MapGrid();
-    towermenu = TowerMenu();
-    descriptionbox = DescriptionBox();
+	//this is redundant but if it works dont fix it
+    //mapgrid = MapGrid();
+    //towermenu = TowerMenu();
+    //descriptionbox = DescriptionBox();
+	mapgrid.Pathfind();
 }
 
 void GUI::Draw(ALLEGRO_MOUSE_STATE state)
@@ -15,6 +17,7 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     mapgrid.draw(state, &title, &description);
     towermenu.draw(state);
     descriptionbox.Draw(title, description);
+	wavepanel.Draw(state);
 }
 
 void GUI::MouseClicked()

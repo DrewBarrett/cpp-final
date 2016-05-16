@@ -5,13 +5,13 @@ Button::Button()
 
 }
 
-Button::Button(int x1, int y1, std::string text1)
+Button::Button(int x1, int y1, int w1, std::string text1)
 {
 	x = x1;
 	y = y1;
 	text = text1;
 	height = 35;
-	width = text.size() * 20;
+	width = w1;
 	// = al_load_font("comic.ttf", 20, 0);
 	color = al_color_name("white");
 	img = NULL;
@@ -44,7 +44,7 @@ int Button::draw(ALLEGRO_MOUSE_STATE state)
         fontcolor = al_color_name("gray");
 	}
 
-	al_draw_text(font, fontcolor, x, y, ALLEGRO_ALIGN_CENTRE, text.c_str());
+	al_draw_text(font, fontcolor, x + 20, y, ALLEGRO_ALIGN_LEFT, text.c_str());
 	if (img != NULL)
     {
         al_draw_filled_rectangle(x, y, x+ width, y + height, al_color_name("gray"));
