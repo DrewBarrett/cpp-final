@@ -2,9 +2,10 @@
 
 
 
-Enemy::Enemy(std::string type)
+Enemy::Enemy(int type, std::vector<int> x, std::vector<int> y)
 {
-	if (type == "basic") 
+    //basic enemy
+	if (type == 1)
 	{
 		health = 10;
 		speed = 1;

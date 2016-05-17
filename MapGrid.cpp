@@ -52,7 +52,7 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *d
 			newDesc = sstm.str();
 			*description = newDesc;
 		}
-        
+
     }
     if(hover != NULL){
         hover->draw(mouse);
@@ -147,7 +147,7 @@ bool MapGrid::Pathfind()
 			//int cy = current->GetGridY();
 			int cx = finishx;
 			int cy = GridHeight - 1;
-			
+
 			//path.clear();
 			try
 			{
@@ -187,7 +187,7 @@ bool MapGrid::Pathfind()
 				std::cout << "ERROR";
 			}
 			//path.push_back(&grid[current->GetGridY()][current->GetGridX()]);
-			
+
 			//ReconstructPath();
 			std::cout << "Found path!" << std::endl;
 			return true;
@@ -303,6 +303,12 @@ bool MapGrid::Pathfind()
 	//failed to find path
 	std::cout << "failed to find path!" << std::endl;
 	return false;
+}
+
+void MapGrid::GetPath(std::vector<int> *x, std::vector<int> *y)
+{
+    *x = pathx;
+    *y = pathy;
 }
 
 void MapGrid::ReconstructPath()

@@ -42,7 +42,14 @@ void GUI::MouseClicked()
 			//building a tower here would cause the pathfinding to error! Hopefully because there is no available path...
 			mapgrid.GetClicked()->Setoccupied(0);
 		}
-    }else{
+    }
+    else if (wavepanel.click())
+    {
+        mapgrid.GetPath(&pathx, &pathy);
+        wavemanager.AdvanceWave(pathx, pathy);
+    }
+    else
+    {
         //deselect gridsquare
         mapgrid.SetClicked();
         towermenu.disable();

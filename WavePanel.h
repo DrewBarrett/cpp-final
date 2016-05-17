@@ -8,7 +8,9 @@ class WavePanel
 public:
 	WavePanel();
 	void Draw(ALLEGRO_MOUSE_STATE);
+	bool click();
 private:
 	Button btnNextWave;
+	bool hover = false;
 };
 #endif

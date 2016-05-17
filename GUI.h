@@ -4,6 +4,7 @@
 #include "MapGrid.h"
 #include "DescriptionBox.h"
 #include "WavePanel.h"
+#include "WaveManager.h"
 
 class GUI
 {
@@ -18,6 +19,9 @@ class GUI
         TowerMenu towermenu;
         DescriptionBox descriptionbox;
 		WavePanel wavepanel;
+		WaveManager wavemanager;
+		std::vector<int> pathx;
+		std::vector<int> pathy;
 };
 
 #endif // GUI_H

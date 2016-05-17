@@ -9,5 +9,17 @@ WavePanel::WavePanel()
 
 void WavePanel::Draw(ALLEGRO_MOUSE_STATE state)
 {
-	btnNextWave.draw(state);
+	hover = false;
+	if(btnNextWave.draw(state) == 2){
+        hover = true;
+	}
+}
+
+bool WavePanel::click()
+{
+    if(hover)
+    {
+        return true;
+    }
+    return false;
 }

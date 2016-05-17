@@ -23,6 +23,7 @@ class MapGrid
 		bool Pathfind();
 		void ReconstructPath();
 		void DrawPath();
+		void GetPath(std::vector<int> *,std::vector<int> *);
 		int EstimateCostToFinish(int x, int y);
     protected:
     private:
