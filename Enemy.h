@@ -12,7 +12,7 @@ class Enemy
 {
 public:
 	Enemy(int type, std::vector<int> x, std::vector<int> y);
-	void Draw();
+	int Draw();
 	void Enable();
 private:
 	int health;

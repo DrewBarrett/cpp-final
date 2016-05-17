@@ -19,12 +19,22 @@ void WaveManager::AdvanceWave(std::vector<int> pathx, std::vector<int> pathy)
         }
     }
     enemies[0].Enable();
+    numEnabled++;
 }
 
 void WaveManager::update()
 {
     for(int i = 0; i < enemies.size(); i++)
     {
-        enemies[i].Draw();
+        int status = enemies[i].Draw();
+        if (numEnabled < enemies.size() && i == 0 && status == 1)
+        {
+            enemies[numEnabled].Enable();
+            numEnabled++;
+        }
+        if (i == 0 && status == 2)
+        {
+            enemies.erase(enemies.begin());
+        }
     }
 }

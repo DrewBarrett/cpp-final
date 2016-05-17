@@ -10,5 +10,6 @@ public:
 private:
 	int wave = 0;
 	std::vector<Enemy> enemies;
+	int numEnabled = 0;
 };
 

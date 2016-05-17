@@ -25,25 +25,31 @@ void Enemy::Enable()
     }
 }
 
-void Enemy::Draw()
+int Enemy::Draw()
 {
     if(enabled)
     {
         if (x < pathx[pathx.size() - 1])
             x++;
-        if (x > pathx[pathx.size() - 1])
+        else if (x > pathx[pathx.size() - 1])
             x--;
-        if (y < pathy[pathx.size() - 1])
+        if (y < pathy[pathy.size() - 1])
             y++;
-        if (y > pathy[pathx.size() - 1])
+        else if (y > pathy[pathy.size() - 1])
             y--;
         if(x == pathx[pathx.size() - 1] && y == pathy[pathx.size() - 1])
         {
             pathx.pop_back();
             pathy.pop_back();
+            return 1;
+        }
+        if (pathx.size() == 0)
+        {
+            return 2;
         }
         al_draw_filled_circle(x + (70/2), y + (70 /2), 70 / 4, al_color_name("blue"));
         std::cout << "current xy: " << x << ", " << y << std::endl;
     }
+    return 0;
 }
 
