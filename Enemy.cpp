@@ -48,7 +48,7 @@ int Enemy::Draw()
             return 2;
         }
         al_draw_filled_circle(x + (70/2), y + (70 /2), 70 / 4, al_color_name("blue"));
-        std::cout << "current xy: " << x << ", " << y << std::endl;
+        //std::cout << "current xy: " << x << ", " << y << std::endl;
     }
     return 0;
 }

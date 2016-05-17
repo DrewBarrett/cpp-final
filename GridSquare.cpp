@@ -44,9 +44,17 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
         {
             al_draw_filled_rectangle(x,y,x+sideLength,y+sideLength,al_color_name("gray"));
         }
-        if (occupied != 2)
+        if (occupied != 2 && occupied !=3)
         {
+            //tower.Update();
             al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
+            //al_draw_scaled_rotated_bitmap(bg, al_get_bitmap_width(bg)/2, al_get_bitmap_width(bg)/2, x + sideLength/2, y+sideLength/2, al_get_bitmap_width(bg)/sideLength,al_get_bitmap_width(bg)/sideLength, tower.Getrotation(),0);
+        }
+        if (occupied == 3)
+        {
+            tower.Update();
+            //al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
+            al_draw_scaled_rotated_bitmap(bg, al_get_bitmap_width(bg)/2, al_get_bitmap_width(bg)/2, x + sideLength/2, y+sideLength/2, sideLength/al_get_bitmap_width(bg),sideLength/al_get_bitmap_width(bg), tower.Getrotation(),0);
         }
     }
     al_draw_rectangle(x, y, x+sideLength, y+sideLength, color, 1);
@@ -66,6 +74,7 @@ void GridSquare::Setoccupied(int val)
             name = "Gun Tower";
             description = "A standard tower that shoots the enemies.";
             bg = al_load_bitmap("tower01.png");
+            tower = Tower();
 			//TODO: dont reload the bitmap every time!
             break;
         case 2:

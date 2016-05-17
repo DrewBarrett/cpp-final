@@ -14,6 +14,7 @@ public:
 	Enemy(int type, std::vector<int> x, std::vector<int> y);
 	int Draw();
 	void Enable();
+	bool isEnabled() {return enabled;}
 private:
 	int health;
 	int speed;

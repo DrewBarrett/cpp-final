@@ -22,6 +22,7 @@ class GUI
 		WaveManager wavemanager;
 		std::vector<int> pathx;
 		std::vector<int> pathy;
+		std::vector<Enemy> *enemies;
 };
 
 #endif // GUI_H

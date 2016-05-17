@@ -57,7 +57,7 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *d
     if(hover != NULL){
         hover->draw(mouse);
     }
-	//DrawPath();
+	DrawPath();
 }
 
 void MapGrid::SetClicked()

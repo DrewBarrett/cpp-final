@@ -4,6 +4,7 @@
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"
 #include <allegro5/allegro_color.h>
+#include "Tower.h"
 #include <iostream>
 class GridSquare
 {
@@ -99,6 +100,7 @@ class GridSquare
 		//GridSquare *parent = NULL;
 		int parentX = NULL;
 		int parentY = NULL;
+		Tower tower;
 };
 
 #endif // GRIDSQUARE_H
