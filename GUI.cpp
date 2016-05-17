@@ -18,6 +18,7 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     towermenu.draw(state);
     descriptionbox.Draw(title, description);
 	wavepanel.Draw(state);
+	wavemanager.update();
 }
 
 void GUI::MouseClicked()

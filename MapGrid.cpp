@@ -307,8 +307,12 @@ bool MapGrid::Pathfind()
 
 void MapGrid::GetPath(std::vector<int> *x, std::vector<int> *y)
 {
-    *x = pathx;
-    *y = pathy;
+    for (int i = 0; i < pathx.size(); i++)
+    {
+        x->push_back(grid[pathy[i]][pathx[i]].Getx());
+        y->push_back(grid[pathy[i]][pathx[i]].Gety());
+    }
+
 }
 
 void MapGrid::ReconstructPath()
