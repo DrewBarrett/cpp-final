@@ -15,12 +15,13 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 {
     std::string title;
     std::string description;
-    wavemanager.update();
+    
     mapgrid.draw(state, &title, &description);
     towermenu.draw(state);
     descriptionbox.Draw(title, description);
 	wavepanel.Draw(state);
-
+	//wave manager needs to be called last so enemies show up above grass!
+	wavemanager.update();
 }
 
 void GUI::MouseClicked()
