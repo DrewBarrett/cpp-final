@@ -25,6 +25,7 @@ class MapGrid
 		void DrawPath();
 		void GetPath(std::vector<int> *,std::vector<int> *);
 		int EstimateCostToFinish(int x, int y);
+		void setEnemies(std::vector<Enemy> *);
     protected:
     private:
         GridSquare *hover;
@@ -35,6 +36,7 @@ class MapGrid
 		std::vector<GridSquare*> path;
 		std::vector<int> pathx;
 		std::vector<int> pathy;
+		std::vector<Enemy>* enemies;
 		int startx = -1;
 		int finishx = -1;
 };

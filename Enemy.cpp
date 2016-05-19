@@ -32,6 +32,7 @@ int Enemy::Draw()
 		if (pathx.size() == 0)
 		{
 			return 2;
+			enabled =false;
 		}
 		if (x < pathx[pathx.size() - 1])
             x++;
@@ -47,7 +48,7 @@ int Enemy::Draw()
             pathy.pop_back();
             return 1;
         }
-        
+
         al_draw_filled_circle(x + (70/2), y + (70 /2), 70 / 4, al_color_name("blue"));
         //std::cout << "current xy: " << x << ", " << y << std::endl;
     }

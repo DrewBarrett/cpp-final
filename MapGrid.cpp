@@ -8,7 +8,7 @@ MapGrid::MapGrid()
     {
         for (int j = 0; j < GridWidth; j++)
         {
-            grid[i][j] = GridSquare(j*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), i*SideLength + 10, SideLength, 0, bitmap,j,i);
+            grid[i][j] = GridSquare(j*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), i*SideLength + 10, SideLength, 0, bitmap,j,i, enemies);
             if((i == GridHeight - 1)){
                 grid[i][j].Setoccupied(2);
             }
@@ -16,12 +16,12 @@ MapGrid::MapGrid()
     }
     ALLEGRO_BITMAP *arrow = al_load_bitmap("arrow.png");
     int random = rand()%GridWidth;
-    grid[0][random] = GridSquare(random*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), 0*SideLength + 10, SideLength, 1, arrow,random,0);
+    grid[0][random] = GridSquare(random*SideLength + ScreenWidth/2 - (SideLength*GridWidth/2), 0*SideLength + 10, SideLength, 1, arrow,random,0, enemies);
     start = &grid[0][random];//broken
 	startx = random;
     std::cout << random << " start set" << std::endl;
     random = rand() % GridWidth;
-	grid[GridHeight-1][random] = GridSquare(random*SideLength + ScreenWidth / 2 - (SideLength*GridWidth / 2), (GridHeight - 1) * SideLength + 10, SideLength, 4, arrow,random,GridHeight-1);
+	grid[GridHeight-1][random] = GridSquare(random*SideLength + ScreenWidth / 2 - (SideLength*GridWidth / 2), (GridHeight - 1) * SideLength + 10, SideLength, 4, arrow,random,GridHeight-1, enemies);
     finish = &grid[GridHeight][random];//broken
 	finishx = random;
     std::cout << random << " finish set" << std::endl;
@@ -67,6 +67,11 @@ void MapGrid::SetClicked()
         clicked->SetClicked(false);
     }
     clicked = hover;
+}
+
+void MapGrid::setEnemies(std::vector<Enemy>* memes)
+{
+    enemies = memes;
 }
 
 bool MapGrid::Pathfind()

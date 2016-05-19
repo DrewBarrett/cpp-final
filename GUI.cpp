@@ -8,14 +8,14 @@ GUI::GUI()
     //towermenu = TowerMenu();
     //descriptionbox = DescriptionBox();
 	mapgrid.Pathfind();
-	//enemies = wavemanager
+	mapgrid.setEnemies(wavemanager.GetEnemies());
 }
 
 void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 {
     std::string title;
     std::string description;
-    
+
     mapgrid.draw(state, &title, &description);
     towermenu.draw(state);
     descriptionbox.Draw(title, description);

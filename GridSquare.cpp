@@ -9,7 +9,7 @@ GridSquare::GridSquare()
     bg = NULL;
 }
 
-GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap, int gx, int gy)
+GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap, int gx, int gy, std::vector<Enemy>* memes)
 {
     x = xPos;
     y = yPos;
@@ -21,6 +21,7 @@ GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *b
 	bg = bitmap;
 	//Occupied 0 is Grass, Occupied 1 is the start tile, Occupied 2 is one of the end walls and Occupied 3 is a Dale Tower
 	Setoccupied(type);
+	enemies = memes;
 }
 
 bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
@@ -74,7 +75,7 @@ void GridSquare::Setoccupied(int val)
             name = "Gun Tower";
             description = "A standard tower that shoots the enemies.";
             bg = al_load_bitmap("tower01.png");
-            tower = Tower();
+            tower = Tower(enemies, x+(sideLength/2), y+(sideLength/2));
 			//TODO: dont reload the bitmap every time!
             break;
         case 2:

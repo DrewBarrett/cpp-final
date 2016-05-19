@@ -7,6 +7,7 @@ class Tower
     public:
         /** Default constructor */
         Tower();
+        Tower(std::vector<Enemy> *, int, int);
         /** Access firerate
          * \return The current value of firerate
          */
@@ -39,6 +40,9 @@ class Tower
         int firerate; //!< Member variable "firerate"
         Enemy *target; //!< Member variable "*target"
         int rotation; //!< Member variable "rotation"
+        std::vector<Enemy>* enemies;
+        int x;
+        int y;
 };
 
 #endif // TOWER_H

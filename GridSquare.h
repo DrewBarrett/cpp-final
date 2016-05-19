@@ -11,7 +11,7 @@ class GridSquare
     public:
         /** Default constructor */
         GridSquare();
-        GridSquare(int, int, int, int, ALLEGRO_BITMAP*, int, int);
+        GridSquare(int, int, int, int, ALLEGRO_BITMAP*, int, int, std::vector<Enemy> *);
         /** Access x
          * \return The current value of x
          */
@@ -101,6 +101,7 @@ class GridSquare
 		int parentX = NULL;
 		int parentY = NULL;
 		Tower tower;
+		std::vector<Enemy>* enemies;
 };
 
 #endif // GRIDSQUARE_H
