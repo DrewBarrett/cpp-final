@@ -41,5 +41,9 @@ void WaveManager::update()
             std::cout << "erasing enemy" << std::endl;
             enemies.erase(enemies.begin()+i);
         }
+        if(status == 3)
+        {
+            enemies.erase(enemies.begin()+i);
+        }
     }
 }

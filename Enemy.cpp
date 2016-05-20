@@ -29,10 +29,14 @@ int Enemy::Draw()
 {
     if(enabled)
     {
-		if (pathx.size() == 0 || health <= 0)
+		if (pathx.size() == 0)
 		{
 			enabled = false;
 			return 2;
+		}
+		if (health <= 0)
+        {
+            return 3;
 		}
 		if (x < pathx[pathx.size() - 1])
             x++;
