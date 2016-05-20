@@ -13,5 +13,6 @@ private:
 	int timer = 0;
 	std::vector<Enemy> enemies;
 	int numEnabled = 0;
+	int numGone = 0;
 };
 

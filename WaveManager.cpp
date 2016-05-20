@@ -18,9 +18,10 @@ void WaveManager::AdvanceWave(std::vector<int> pathx, std::vector<int> pathy)
             enemies.push_back(Enemy(1, pathx, pathy));
         }
     }
-    enemies[0].Enable();
+    //enemies[0].Enable();
     numEnabled = 0;
-    numEnabled++;
+    numGone = 0;
+    //numEnabled++;
     timer = 0;
 }
 
@@ -30,20 +31,25 @@ void WaveManager::update()
     for(int i = 0; i < enemies.size(); i++)
     {
         int status = enemies[i].Draw();
-        if (numEnabled < enemies.size() && i == 0 && timer >= 100)
+        //std::cout << "drawing enemy at " << enemies[i].GetX() << " " << enemies[i].GetY() << " " << enemies[i].isEnabled() << std::endl;
+        if (numEnabled < wave*5 && i == 0 && timer >= 100)
         {
-            enemies[numEnabled].Enable();
+            enemies[numEnabled-numGone].Enable();
             numEnabled++;
+            std::cout << "num enabled is now: " << numEnabled << std::endl;
             timer = 0;
         }
         if (status == 2)
         {
             std::cout << "erasing enemy" << std::endl;
             enemies.erase(enemies.begin()+i);
+            numGone++;
         }
         if(status == 3)
         {
+            std::cout << "dead enemy erasing" << std::endl;
             enemies.erase(enemies.begin()+i);
+            numGone++;
         }
     }
 }

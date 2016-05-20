@@ -27,6 +27,7 @@ void Tower::Update()
 	if (enemies != NULL && enemies->size() > 0 && (target == NULL || !target->isEnabled()))
 	{
 		//std::cout << "target set" << std::endl;
+		std::cout << "size of enemy array" << enemies->size() << std::endl;
 		target = &enemies->at(0);
 	}
 	if (target != NULL && target->isEnabled()) {

@@ -27,17 +27,18 @@ void Enemy::Enable()
 
 int Enemy::Draw()
 {
+    if (pathx.size() == 0)
+    {
+        enabled = false;
+        return 2;
+    }
+    if (health <= 0)
+    {
+        return 3;
+    }
     if(enabled)
     {
-		if (pathx.size() == 0)
-		{
-			enabled = false;
-			return 2;
-		}
-		if (health <= 0)
-        {
-            return 3;
-		}
+
 		if (x < pathx[pathx.size() - 1])
             x++;
         else if (x > pathx[pathx.size() - 1])
