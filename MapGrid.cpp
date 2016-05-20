@@ -54,7 +54,7 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *d
 		if (!clicked->IsParentNull()) {
 			std::string newDesc = "";
 			std::stringstream sstm;
-			sstm << "Parent X: " << clicked->GetParentX() << " Parent Y: " << clicked->GetParentY() << " My fScore: " << clicked->GetFScore() << " my gScore: " << clicked->GetGScore();
+			sstm << "DEBUG: Parent X: " << clicked->GetParentX() << " Parent Y: " << clicked->GetParentY() << " My fScore: " << clicked->GetFScore() << " my gScore: " << clicked->GetGScore();
 			newDesc = sstm.str();
 			*description = newDesc;
 		}
@@ -127,6 +127,9 @@ bool MapGrid::Pathfind()
 	std::vector<GridSquare*> closedSet;//nodes that have allready been checked
 	std::vector<GridSquare*> openSet;//nodes that need to be evaluated
 
+	
+
+
 	//reset start and finish because they dont work otherwise?
 	start = &grid[0][startx];
 	finish = &grid[GridHeight - 1][finishx];
@@ -167,6 +170,14 @@ bool MapGrid::Pathfind()
 				//std::cout << current->GetParent()->Getx() << " current x " << current->GetParent()->GetGridX() << std::endl;
 				pathx.clear();
 				pathy.clear();
+				//remove every grid from path
+				for (int i = 0; i < GridHeight; i++)
+				{
+					for (int j = 0; j < GridWidth; j++)
+					{
+						grid[i][j].SetOnPath(false);
+					}
+				}
 				pathx.push_back(cx);
 				pathy.push_back(cy);
 				//std::cout << "pushed back final point at " << cx << " " << cy << std::endl;
@@ -180,6 +191,7 @@ bool MapGrid::Pathfind()
 				//	pathy.push_back(cy);
 				//}
 				while (cx != startx || cy != 0) {
+					grid[cy][cx].SetOnPath(true);
 					int newcx = grid[cy][cx].GetParentX();
 					int newcy = grid[cy][cx].GetParentY();
 					//std::cout << grid[cy][cx].GetParentX() << " " << grid[cy][cx].GetParentY() << std::endl;

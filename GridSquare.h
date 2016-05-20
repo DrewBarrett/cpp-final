@@ -77,6 +77,8 @@ class GridSquare
 		int GetParentX() { return parentX; }
 		int GetParentY() { return parentY; }
 		bool IsParentNull() { return parentX == NULL; }
+		bool IsPath() { return onPath; }
+		void SetOnPath(bool val) { onPath = val; }
 		//GridSquare* GetParent() { return  parent; }
         std::string GetName(){return name;}
         std::string GetDescription() {return description;}
@@ -93,6 +95,7 @@ class GridSquare
         int occupied = 0; //!< Member variable "occupied"
         ALLEGRO_COLOR color; //!< Member variable "color"
         bool highlighted; //!< Member variable "highlighted"
+		bool onPath = false;
         bool clicked = false;
         std::string name = "Grass";
         std::string description = "There is nothing on this tile.";
