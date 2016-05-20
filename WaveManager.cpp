@@ -13,7 +13,7 @@ void WaveManager::AdvanceWave(std::vector<double> pathx, std::vector<double> pat
     enemies.clear();
     if(wave>=1)
     {
-        for(int i = 0; i < 5*wave; i++)
+        for(int i = 0; i < wave*wave; i++)
         {
             enemies.push_back(Enemy(wave, pathx, pathy));
         }
@@ -33,7 +33,7 @@ void WaveManager::update(int *money, int *health)
     {
         int status = enemies[i].Draw();
         //std::cout << "drawing enemy at " << enemies[i].GetX() << " " << enemies[i].GetY() << " " << enemies[i].isEnabled() << std::endl;
-        if (numEnabled < wave*5 && i == 0 && timer >= 100/(wave))
+        if (numEnabled < wave*wave && i == 0 && timer >= 100/(wave))
         {
             enemies[numEnabled-numGone].Enable();
             numEnabled++;
@@ -52,12 +52,17 @@ void WaveManager::update(int *money, int *health)
             std::cout << "dead enemy erasing" << std::endl;
             enemies.erase(enemies.begin()+i);
             numGone++;
-			*money += 25;
+			*money += 5;
         }
     }
     if(enemies.size() == 0)
     {
+		if (waveInProgress)
+		{
+			*money += wave * 100;
+		}
         waveInProgress = false;
+		
 		//*money += 100;
     }
 }

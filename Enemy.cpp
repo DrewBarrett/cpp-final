@@ -9,7 +9,7 @@ Enemy::Enemy(double type, std::vector<double> x1, std::vector<double> y1)
     pathy = y1;
     x = pathx[pathx.size() - 1];
     y = pathy[pathy.size() - 1];
-	speed = type * 1.25;
+	speed = type * 1.10;
 	std::cout << "speed" << speed << std::endl;
 	health = 10;
 }

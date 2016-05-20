@@ -42,7 +42,7 @@ void GUI::MouseClicked()
         mapgrid.SetClicked();
         gs->SetClicked(true);
 		//mapgrid.Pathfind();
-        if (gs->Getoccupied() == 0 && !wavemanager.GetWaveInProgress())
+        if ((gs->Getoccupied() == 0 || gs->Getoccupied() == 2)&& !wavemanager.GetWaveInProgress())
         {
             towermenu.enable();
         }

@@ -94,7 +94,7 @@ void GridSquare::Setoccupied(int val)
             break;
         case 2:
             name = "Wall";
-            description = "This the the wall you are trying to defend from the Mongolized Weapon Kiwis.";
+            description = "This the the wall you are trying to defend from the Mongolized Weapon Kiwis. Can upgrade to a tower!";
             break;
         case 1:
             name = "Start";

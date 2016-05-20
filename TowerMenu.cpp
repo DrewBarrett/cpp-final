@@ -68,8 +68,8 @@ void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string 
 	}
 	else if (hover == "wall")
 	{
-		*title = "wall";
-		*desc = "a wall to make your maze out of. $5";
+		*title = "Wall";
+		*desc = "A wall to make your maze out of. Can be upgraded to a tower later on. $5";
 		cost = 5;
 	}
 }

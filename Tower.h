@@ -2,6 +2,7 @@
 #define TOWER_H
 #include "Enemy.h"
 #include <math.h>
+#include <cmath>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 

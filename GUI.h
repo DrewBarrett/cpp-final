@@ -23,7 +23,7 @@ class GUI
 		std::vector<double> pathx;
 		std::vector<double> pathy;
 		std::vector<Enemy> *enemies;
-		int money = 120;
+		int money = 150;
 		int health = 15;
 };
 

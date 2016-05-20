@@ -12,7 +12,7 @@ Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos, ALLEGRO_SAMPLE* samp
 {
 	shootsound = sample;
 	if (type == "super") {
-		firerate = 1;
+		firerate = .65;
 		color = al_color_name("red");
 	}
 	else if (type == "green")
@@ -22,7 +22,7 @@ Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos, ALLEGRO_SAMPLE* samp
 	}
 	else if (type == "orange")
 	{
-		firerate = .75;
+		firerate = .55;
 		color = al_color_name("orange");
 	}
     rotation = 0;
