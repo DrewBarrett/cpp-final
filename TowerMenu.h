@@ -21,6 +21,7 @@ class TowerMenu
         void draw(ALLEGRO_MOUSE_STATE);
         void disable();
         void enable();
+		bool GetEnabled() { return enabled; }
         bool click();
         /** Access towers[10]
          * \return The current value of towers[10]

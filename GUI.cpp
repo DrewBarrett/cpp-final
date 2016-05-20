@@ -39,13 +39,16 @@ void GUI::MouseClicked()
         {
             towermenu.disable();
         }
-    }else if (towermenu.click()){
+    }else if (towermenu.click() && towermenu.GetEnabled()){
         mapgrid.GetClicked()->Setoccupied(3);
+		towermenu.disable();
 		if (mapgrid.GetClicked()->IsPath() && !mapgrid.Pathfind()) {
 			//TODO: only call pathfinding if the tile is in the way of the path.
 			//building a tower here would cause the pathfinding to error! Hopefully because there is no available path...
 			mapgrid.GetClicked()->Setoccupied(0);
+			towermenu.enable();
 		}
+		
     }
     else if (wavepanel.click())
     {
