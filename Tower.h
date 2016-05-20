@@ -2,13 +2,15 @@
 #define TOWER_H
 #include "Enemy.h"
 #include <math.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 
 class Tower
 {
     public:
         /** Default constructor */
         Tower();
-        Tower(std::vector<Enemy> *, int, int);
+        Tower(std::vector<Enemy> *, int, int, ALLEGRO_SAMPLE*);
         /** Access firerate
          * \return The current value of firerate
          */
@@ -43,6 +45,7 @@ class Tower
         double rotation; //!< Member variable "rotation"
         double cooldown = 0;
         std::vector<Enemy>* enemies = NULL;
+		ALLEGRO_SAMPLE *shootsound;
         int x;
         int y;
 };

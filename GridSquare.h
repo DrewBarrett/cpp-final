@@ -11,7 +11,7 @@ class GridSquare
     public:
         /** Default constructor */
         GridSquare();
-        GridSquare(int, int, int, int, ALLEGRO_BITMAP*, int, int, std::vector<Enemy> *);
+        GridSquare(int, int, int, int, ALLEGRO_BITMAP*, int, int, std::vector<Enemy> *, ALLEGRO_SAMPLE*);
         /** Access x
          * \return The current value of x
          */
@@ -94,6 +94,7 @@ class GridSquare
         int sideLength; //!< Member variable "sideLength"
         int occupied = 0; //!< Member variable "occupied"
         ALLEGRO_COLOR color; //!< Member variable "color"
+		ALLEGRO_SAMPLE *shootsound;
         bool highlighted; //!< Member variable "highlighted"
 		bool onPath = false;
         bool clicked = false;

@@ -30,6 +30,7 @@ class MapGrid
 		//void setEnemies(std::vector<Enemy> *);
     protected:
     private:
+		ALLEGRO_SAMPLE *shootsound = al_load_sample("shotsound.wav");
         GridSquare *hover;
         GridSquare *clicked = NULL;
         GridSquare *start = NULL;

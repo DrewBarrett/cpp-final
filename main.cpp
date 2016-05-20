@@ -176,5 +176,10 @@ int init() {
 		fprintf(stderr, "al_attach_audio_stream_to_mixer failed.\n");
 		return -1;
 	}
+	if (!al_set_audio_stream_gain(soundtrack, .05))
+	{
+		fprintf(stderr, "changing volume failed!");
+		return -1;
+	}
 	updateLoad("finished loading!");
 }

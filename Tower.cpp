@@ -8,8 +8,9 @@ Tower::Tower()
     y = 0;
 }
 
-Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos)
+Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos, ALLEGRO_SAMPLE* sample)
 {
+	shootsound = sample;
     firerate = 1;
     rotation = 0;
     enemies = memes;
@@ -41,6 +42,7 @@ void Tower::Update()
         if(cooldown <= 0)
         {
             cooldown = 1;
+			al_play_sample(shootsound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             target->TakeDamage(1);
             target = NULL;//retarget after firing in case enemy is out of range
         }

@@ -9,9 +9,10 @@ GridSquare::GridSquare()
     bg = NULL;
 }
 
-GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap, int gx, int gy, std::vector<Enemy>* memes)
+GridSquare::GridSquare(int xPos, int yPos, int side, int type, ALLEGRO_BITMAP *bitmap, int gx, int gy, std::vector<Enemy>* memes, ALLEGRO_SAMPLE* sample)
 {
-    x = xPos;
+	shootsound = sample;
+	x = xPos;
     y = yPos;
 	gridX = gx;
 	gridY = gy;
@@ -51,7 +52,7 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
             al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
             //al_draw_scaled_rotated_bitmap(bg, al_get_bitmap_width(bg)/2, al_get_bitmap_width(bg)/2, x + sideLength/2, y+sideLength/2, al_get_bitmap_width(bg)/sideLength,al_get_bitmap_width(bg)/sideLength, tower.Getrotation(),0);
         }
-        if (occupied == 3)
+        if (occupied != 4 && occupied !=2 && occupied != 1 && occupied != 0)
         {
             tower.Update();
             //al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
@@ -75,7 +76,7 @@ void GridSquare::Setoccupied(int val)
             name = "Gun Tower";
             description = "A standard tower that shoots the enemies.";
             bg = al_load_bitmap("tower01.png");
-            tower = Tower(enemies, x+(sideLength/2), y+(sideLength/2));
+            tower = Tower(enemies, x+(sideLength/2), y+(sideLength/2),shootsound);
 			//TODO: dont reload the bitmap every time!
             break;
         case 2:
