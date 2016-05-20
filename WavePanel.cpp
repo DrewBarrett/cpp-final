@@ -15,9 +15,8 @@ void WavePanel::Draw(ALLEGRO_MOUSE_STATE state)
 	}
 	if(wave!=NULL)
     {
-        std::stringstream sstm;
-        sstm << wave;
-        al_draw_text(font, al_color_name("white"), ScreenWidth - 100, 10, ALLEGRO_ALIGN_LEFT, sstm.str());
+        al_draw_textf(font, al_color_name("white"), ScreenWidth - 100, 10, ALLEGRO_ALIGN_LEFT, "Wave: %d", *wave);
+		al_draw_textf(font, al_color_name("white"), ScreenWidth - 100, 20, ALLEGRO_ALIGN_LEFT, "Enemies: %d", *wave * 5);
     }
 }
 

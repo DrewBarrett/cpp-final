@@ -17,7 +17,9 @@
 #define ScreenHeight 768
 int init();
 ALLEGRO_DISPLAY *display = NULL;
-ALLEGRO_SAMPLE *soundtrack = NULL;
+ALLEGRO_AUDIO_STREAM *soundtrack = NULL;
+ALLEGRO_VOICE*  voice;
+ALLEGRO_MIXER*  mixer;
 ALLEGRO_FONT *font = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
 ALLEGRO_TIMER *timer;
@@ -142,13 +144,37 @@ int init() {
 		fprintf(stderr, "failed to reserve samples!\n");
 		return -1;
 	}
+	updateLoad("loading voice...");
+	voice = al_create_voice(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
+	if (!voice) {
+		fprintf(stderr, "Could not create ALLEGRO_VOICE.\n");
+		return -1;
+	}
+	
+	updateLoad("loading mixer...");
+	mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_FLOAT32, ALLEGRO_CHANNEL_CONF_2);
+	if (!mixer)
+	{
+		fprintf(stderr, "Could not create ALLEGRO_MIXER.\n");
+		return -1;
+	}
+		
+	if (!al_attach_mixer_to_voice(mixer, voice)) {
+		fprintf(stderr, "al_attach_mixer_to_voice failed.\n");
+		return -1;
+		
+	}
 	updateLoad("loading soundtrack...");
-	soundtrack = al_load_sample("soundtrack.ogg");
+	soundtrack = al_load_audio_stream("soundtrack.ogg", 4, 2048);
 
 	if (!soundtrack) {
 		fprintf(stderr, "Could not load sample from soundtrack.mp3!\n");
 		return -1;
 	}
-	al_play_sample(soundtrack, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	//al_play_sample(soundtrack, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	if (!al_attach_audio_stream_to_mixer(soundtrack, mixer)) {
+		fprintf(stderr, "al_attach_audio_stream_to_mixer failed.\n");
+		return -1;
+	}
 	updateLoad("finished loading!");
 }
