@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 	al_register_event_source(queue, al_get_timer_event_source(timer));
 	al_start_timer(timer);
 
-	GUI gui = GUI();
+	GUI gui = GUI(font);
 
 
 	bool redraw = true;
@@ -72,6 +72,12 @@ int main(int argc, char **argv)
 			if (title) {
 				al_clear_to_color(al_map_rgb(0, 0, 0));
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 0, ALLEGRO_ALIGN_CENTRE, "Kiwi Tower Defense");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 20, ALLEGRO_ALIGN_CENTRE, "Click on a grid square for information about the tile on it");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 40, ALLEGRO_ALIGN_CENTRE, "Hover over a tower on the left to see its information");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 60, ALLEGRO_ALIGN_CENTRE, "Click a tower after clicking a grid square to spend your money and buy it");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 80, ALLEGRO_ALIGN_CENTRE, "You can adjust the path the enemies take by building your towers in their way");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 100, ALLEGRO_ALIGN_CENTRE, "Balance your money between towers and walls to get the perfect balance!");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 120, ALLEGRO_ALIGN_CENTRE, "When you have spent all of the money you want to, click next wave in the bottom right.");
 				//al_draw_bitmap(rules, (ScreenWidth / 2) - (al_get_bitmap_width(rules)/2) , 100, 0);
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, ScreenHeight - 150, ALLEGRO_ALIGN_CENTRE,
 					"Press any key to continue or ESC to exit...");

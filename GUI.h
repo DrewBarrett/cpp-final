@@ -10,11 +10,13 @@ class GUI
 {
     public:
         /** Default constructor */
-        GUI();
+		GUI();
+        GUI(ALLEGRO_FONT*);
         void Draw(ALLEGRO_MOUSE_STATE);
         void MouseClicked();
     protected:
     private:
+		ALLEGRO_FONT *font = NULL;
         MapGrid mapgrid;
         TowerMenu towermenu;
         DescriptionBox descriptionbox;

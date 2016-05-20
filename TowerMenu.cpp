@@ -2,7 +2,11 @@
 
 TowerMenu::TowerMenu()
 {
+}
 
+TowerMenu::TowerMenu(ALLEGRO_FONT *incfont)
+{
+	font = incfont;
     //Button testTower = Button(15, 15, al_load_bitmap("greenTower.png"));
     //for (int i = 0; i < GridHeight; i++)
     //{
@@ -12,10 +16,10 @@ TowerMenu::TowerMenu()
     //    }
     //    towerList.push_back(Button(13+(0*(135/GridWidth)), 13+(i*(135/GridWidth)), 135/GridWidth,al_load_bitmap("greenTower.png"),"blank"));
     //}
-	towerList.push_back(Button(13 + (.5 * (135 / GridWidth)), 13 + (0 * (135 / GridWidth)), 135 / GridWidth, al_load_bitmap("wall.png"), "wall"));
-	towerList.push_back(Button(13 + (.5 * (135 / GridWidth)), 13 + (1 * (135 / GridWidth)), 135 / GridWidth, al_load_bitmap("greenTower.png"), "green"));
-	towerList.push_back(Button(13 + (.5 * (135 / GridWidth)), 13 + (2 * (135 / GridWidth)), 135 / GridWidth, al_load_bitmap("TowerOrange.png"), "orange"));
-	towerList.push_back(Button(13+(.5*(135/GridWidth)), 13+(3*(135/GridWidth)), 135/GridWidth,al_load_bitmap("Tower01.png"), "Dale"));
+	towerList.push_back(Button(13 + (.5 * (135 / GridWidth)), 13 + (1 * (135 / GridWidth)), 135 / GridWidth, al_load_bitmap("wall.png"), "wall"));
+	towerList.push_back(Button(13 + (.5 * (135 / GridWidth)), 13 + (2 * (135 / GridWidth)), 135 / GridWidth, al_load_bitmap("greenTower.png"), "green"));
+	towerList.push_back(Button(13 + (.5 * (135 / GridWidth)), 13 + (3 * (135 / GridWidth)), 135 / GridWidth, al_load_bitmap("TowerOrange.png"), "orange"));
+	towerList.push_back(Button(13+(.5*(135/GridWidth)), 13+(4*(135/GridWidth)), 135/GridWidth,al_load_bitmap("Tower01.png"), "Dale"));
     disable();
 }
 
@@ -23,6 +27,10 @@ void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string 
 {
     hover = "";
     al_draw_rounded_rectangle(10, 10, 150, ScreenHeight-200, 0, 0, al_color_name("white"), 5);
+	ALLEGRO_COLOR color = al_color_name("white");
+	if (!enabled)
+		color = al_color_name("gray");
+	al_draw_text(font, color, 40, 20, ALLEGRO_ALIGN_LEFT, "Towers");
     /*for (int i = 0; i < GridHeight; i++)
     {
         for (int j = 0; j < GridWidth; j++)
@@ -32,6 +40,7 @@ void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string 
             }
         }
     }*/
+
     for(std::vector<Button>::iterator it = towerList.begin(); it != towerList.end(); ++it){
 		if (it->GetTowerTitle() == "wall" && money >= 5)
 			it->SetColor(al_color_name("lawngreen"));

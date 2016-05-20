@@ -40,7 +40,7 @@ int Button::draw(ALLEGRO_MOUSE_STATE state)
     }
 	else {
         thickness = 1;
-        color = al_color_name("gray");
+        color = al_color_name("darkslategray");
         fontcolor = al_color_name("gray");
 	}
 

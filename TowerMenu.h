@@ -18,6 +18,7 @@ class TowerMenu
     public:
         /** Default constructor */
         TowerMenu();
+		TowerMenu(ALLEGRO_FONT *);
         void draw(ALLEGRO_MOUSE_STATE, std::string *, std::string *, int);
         void disable();
         void enable();
@@ -37,6 +38,7 @@ class TowerMenu
         //Button testTower = Button(50, 15, al_load_bitmap("greenTower.png"));
         //tower towers[10]; //!< Member variable "towers[10]"
         Button grid[GridHeight][GridWidth];
+		ALLEGRO_FONT *font = NULL;
         std::vector<Button> towerList;
         std::string hover;
         bool enabled = false;

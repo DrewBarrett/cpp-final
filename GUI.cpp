@@ -3,6 +3,12 @@
 
 GUI::GUI()
 {
+}
+
+GUI::GUI(ALLEGRO_FONT *incfont)
+{
+	font = incfont;
+	towermenu = TowerMenu(font);
 	//this is redundant but if it works dont fix it
     mapgrid = MapGrid(wavemanager.GetEnemies());
     //towermenu = TowerMenu();
