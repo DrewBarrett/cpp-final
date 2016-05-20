@@ -15,6 +15,8 @@ public:
 	int Draw();
 	void Enable();
 	bool isEnabled() {return enabled;}
+	int GetX() { return x; }
+	int GetY() { return y; }
 private:
 	int health;
 	int speed;

@@ -19,10 +19,10 @@ Enemy::Enemy(int type, std::vector<int> x1, std::vector<int> y1)
 void Enemy::Enable()
 {
     enabled = true;
-    for(int i = 0; i < pathx.size(); i++)
+    /*for(int i = 0; i < pathx.size(); i++)
     {
         std::cout << "xy at " << i << " is " << pathx[i] << ", " << pathy[i] << std::endl;
-    }
+    }*/
 }
 
 int Enemy::Draw()

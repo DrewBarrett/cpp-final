@@ -2,6 +2,12 @@
 
 MapGrid::MapGrid()
 {
+	printf("empty map grid created\n");
+}
+
+MapGrid::MapGrid(std::vector<Enemy>* memes)
+{
+	enemies = memes;
     srand (time(NULL));
 	ALLEGRO_BITMAP *bitmap = al_load_bitmap("grass.png");
     for (int i = 0; i < GridHeight; i++)
@@ -69,10 +75,10 @@ void MapGrid::SetClicked()
     clicked = hover;
 }
 
-void MapGrid::setEnemies(std::vector<Enemy>* memes)
-{
-    enemies = memes;
-}
+//void MapGrid::setEnemies()
+//{
+//    
+//}
 
 bool MapGrid::Pathfind()
 {
@@ -116,6 +122,7 @@ bool MapGrid::Pathfind()
 	////we were able to find a path so return true
 	//return true;
 
+	printf("Starting pathfind...\n");
 	//https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
 	std::vector<GridSquare*> closedSet;//nodes that have allready been checked
 	std::vector<GridSquare*> openSet;//nodes that need to be evaluated
@@ -162,7 +169,7 @@ bool MapGrid::Pathfind()
 				pathy.clear();
 				pathx.push_back(cx);
 				pathy.push_back(cy);
-				std::cout << "pushed back final point at " << cx << " " << cy << std::endl;
+				//std::cout << "pushed back final point at " << cx << " " << cy << std::endl;
 				//while (!grid[cy][cx].IsParentNull()) {
 				//	//current = current->GetParent();
 				//	cx = grid[cy][cx].GetParentX();
@@ -176,16 +183,16 @@ bool MapGrid::Pathfind()
 					int newcx = grid[cy][cx].GetParentX();
 					int newcy = grid[cy][cx].GetParentY();
 					//std::cout << grid[cy][cx].GetParentX() << " " << grid[cy][cx].GetParentY() << std::endl;
-					std::cout << "last node was" << cx << " " << cy << " and its parent is " << newcx << " " << newcy<< std::endl;
+					//std::cout << "last node was" << cx << " " << cy << " and its parent is " << newcx << " " << newcy<< std::endl;
 					cx = newcx;
 					cy = newcy;
 					pathx.push_back(cx);
 					pathy.push_back(cy);
 				}
-				for (int i = 0; i < pathx.size(); i++)
-				{
-					std::cout << pathx[i] << " :x y: " << pathy[i] << std::endl;
-				}
+				//for (int i = 0; i < pathx.size(); i++)
+				//{
+					//std::cout << pathx[i] << " :x y: " << pathy[i] << std::endl;
+				//}
 			}
 			catch (...)
 			{
@@ -213,7 +220,7 @@ bool MapGrid::Pathfind()
 				neighborX.push_back(grid[gridY - 1][gridX].GetGridX());
 				neighborY.push_back(grid[gridY - 1][gridX].GetGridY());
 				//std::cout << "the approaching neighbor reported its xy as: " << grid[gridY - 1][gridX].GetGridX() << " " << grid[gridY - 1][gridX].GetGridY() << std::endl;
-				std::cout << "pushed back neigbor at " << gridX << " " << gridY - 1 << std::endl;
+				//std::cout << "pushed back neigbor at " << gridX << " " << gridY - 1 << std::endl;
 			}
 		}
 		if (gridX > 0)
@@ -223,7 +230,7 @@ bool MapGrid::Pathfind()
 			{
 				neighborX.push_back(grid[gridY][gridX - 1].GetGridX());
 				neighborY.push_back(grid[gridY][gridX - 1].GetGridY());
-				std::cout << "pushed back neigbor at " << gridX - 1  << " " <<  gridY << std::endl;
+				//std::cout << "pushed back neigbor at " << gridX - 1  << " " <<  gridY << std::endl;
 			}
 		}
 		if (gridX < GridWidth - 1)
@@ -233,7 +240,7 @@ bool MapGrid::Pathfind()
 			{
 				neighborX.push_back(grid[gridY][gridX + 1].GetGridX());
 				neighborY.push_back(grid[gridY][gridX + 1].GetGridY());
-				std::cout << "pushed back neigbor at " << gridX + 1 << " " << gridY << std::endl;
+				//std::cout << "pushed back neigbor at " << gridX + 1 << " " << gridY << std::endl;
 			}
 		}
 		if (gridY < GridHeight - 1)
@@ -244,7 +251,7 @@ bool MapGrid::Pathfind()
 			{
 				neighborX.push_back(grid[gridY + 1][gridX].GetGridX());
 				neighborY.push_back(grid[gridY + 1][gridX].GetGridY());
-				std::cout << "pushed back neigbor at " << gridX << " " << gridY + 1 << std::endl;
+				//std::cout << "pushed back neigbor at " << gridX << " " << gridY + 1 << std::endl;
 			}
 		}
 		int bestNeighborGScore = NULL;
@@ -256,7 +263,7 @@ bool MapGrid::Pathfind()
 			{
 				if (neighborX[i] == closedSet[j]->GetGridX() && neighborY[i] == closedSet[j]->GetGridY())
 				{
-					std::cout << "the neighbor at " << neighborX[i] << " " << neighborY[i] << " has been checked already... on to the next one!" << std::endl;
+					//std::cout << "the neighbor at " << neighborX[i] << " " << neighborY[i] << " has been checked already... on to the next one!" << std::endl;
 					checked = true;
 				}
 			}
@@ -269,20 +276,20 @@ bool MapGrid::Pathfind()
 			{
 				if (neighborX[i] == openSet[j]->GetGridX() && neighborY[i] == openSet[j]->GetGridY())
 				{
-					std::cout << "the neigbor at " << neighborX[i] << " " << neighborY[i] << "Is in the open set at " << j << " " << openSet[j]->GetGridX() << " " << openSet[j]->GetGridY() << std::endl;
+					//std::cout << "the neigbor at " << neighborX[i] << " " << neighborY[i] << "Is in the open set at " << j << " " << openSet[j]->GetGridX() << " " << openSet[j]->GetGridY() << std::endl;
 					open = true;
 				}
 			}
 			if (!open)
 			{
 				//add this to open nodes
-				std::cout << "adding the neigbor at " << neighborX[i] << " " << neighborY[i] << " to the open set";
+				//std::cout << "adding the neigbor at " << neighborX[i] << " " << neighborY[i] << " to the open set";
 				openSet.push_back(&grid[neighborY[i]][neighborX[i]]);
 			}
 			else if (bestNeighborGScore != NULL && neighborGScore >= bestNeighborGScore)
 			{
 				//not a better path
-				std::cout << "This is not a better path at " << neighborX[i] << " " << neighborY[i] << std::endl;
+				//std::cout << "This is not a better path at " << neighborX[i] << " " << neighborY[i] << std::endl;
 				continue;
 			}
 
@@ -292,8 +299,8 @@ bool MapGrid::Pathfind()
 				//grid[neighborY[i]][neighborX[i]].SetParent(current);
 				grid[neighborY[i]][neighborX[i]].SetParentX(current->GetGridX());
 				grid[neighborY[i]][neighborX[i]].SetParentY(current->GetGridY());
-				std::cout << "set parent xy for " << neighborX[i] << " " << neighborY[i] << "to " << current->GetGridX() << " " << current->GetGridY() << std::endl;
-				std::cout << "confirming last statement for " << neighborX[i] << " " << neighborY[i] << " parrent x and y are: " << grid[neighborY[i]][neighborX[i]].GetParentX() << " " << grid[neighborY[i]][neighborX[i]].GetParentY() << std::endl;
+				//std::cout << "set parent xy for " << neighborX[i] << " " << neighborY[i] << "to " << current->GetGridX() << " " << current->GetGridY() << std::endl;
+				//std::cout << "confirming last statement for " << neighborX[i] << " " << neighborY[i] << " parrent x and y are: " << grid[neighborY[i]][neighborX[i]].GetParentX() << " " << grid[neighborY[i]][neighborX[i]].GetParentY() << std::endl;
 				grid[neighborY[i]][neighborX[i]].SetGScore(neighborGScore);
 				bestNeighborGScore = neighborGScore;
 				grid[neighborY[i]][neighborX[i]].SetFScore(neighborGScore + EstimateCostToFinish(neighborX[i], neighborY[i]));
@@ -347,7 +354,7 @@ void MapGrid::DrawPath()
 
 int MapGrid::EstimateCostToFinish(int x, int y)
 {
-	std::cout << x << " " << y << std::endl;
-	std::cout << (std::abs(x - finishx) + std::abs(y - (GridHeight-1))) << std::endl;
+	//std::cout << x << " " << y << std::endl;
+	//std::cout << (std::abs(x - finishx) + std::abs(y - (GridHeight-1))) << std::endl;
 	return (std::abs(x - finishx) + std::abs(y - (GridHeight - 1)));
 }

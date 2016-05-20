@@ -20,8 +20,21 @@ Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos)
 void Tower::Update()
 {
     //rotation++;
-    if((target == NULL || (enemies != NULL && (enemies->size() > 0 && !target->isEnabled()))))
-    {
-        target = &enemies->at(0);
-    }
+	if (enemies == NULL) 
+	{
+		printf("NULL enemies vector! Maybe the wave hasnt started...\n");
+	}
+	if (enemies != NULL && enemies->size() > 0 && (target == NULL || !target->isEnabled()))
+	{
+		printf("target set\n");
+		target = &enemies->at(0);
+	}
+	if (target != NULL && target->isEnabled()) {
+		//tower allready knows its center while enemy only knows top left
+		double adjacent = -1*((target->GetY() + 70/2) - y);
+		double opposite = ((target->GetX() + 70/2) - x);
+		//rotation = atan(opposite / adjacent);
+		rotation = atan2(opposite,adjacent);
+		std::cout << "Rotation set: " << opposite << " " << adjacent << " " << rotation << std::endl;
+	}
 }

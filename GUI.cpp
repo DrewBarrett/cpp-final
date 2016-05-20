@@ -4,11 +4,11 @@
 GUI::GUI()
 {
 	//this is redundant but if it works dont fix it
-    //mapgrid = MapGrid();
+    mapgrid = MapGrid(wavemanager.GetEnemies());
     //towermenu = TowerMenu();
     //descriptionbox = DescriptionBox();
 	mapgrid.Pathfind();
-	mapgrid.setEnemies(wavemanager.GetEnemies());
+	//mapgrid.setEnemies();
 }
 
 void GUI::Draw(ALLEGRO_MOUSE_STATE state)

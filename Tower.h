@@ -1,6 +1,7 @@
 #ifndef TOWER_H
 #define TOWER_H
 #include "Enemy.h"
+#include <math.h>
 
 class Tower
 {
@@ -30,7 +31,7 @@ class Tower
         /** Access rotation
          * \return The current value of rotation
          */
-        int Getrotation() { return rotation; }
+        double Getrotation() { return rotation; }
         /** Set rotation
          * \param val New value to set
          */
@@ -38,9 +39,9 @@ class Tower
     protected:
     private:
         int firerate; //!< Member variable "firerate"
-        Enemy *target; //!< Member variable "*target"
-        int rotation; //!< Member variable "rotation"
-        std::vector<Enemy>* enemies;
+        Enemy *target = NULL; //!< Member variable "*target"
+        double rotation; //!< Member variable "rotation"
+        std::vector<Enemy>* enemies = NULL;
         int x;
         int y;
 };
