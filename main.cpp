@@ -69,12 +69,12 @@ int main(int argc, char **argv)
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			if (title) {
 				al_clear_to_color(al_map_rgb(0, 0, 0));
-				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 0, ALLEGRO_ALIGN_CENTRE, "not Solitaire!");
+				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 0, ALLEGRO_ALIGN_CENTRE, "Kiwi Tower Defense");
 				//al_draw_bitmap(rules, (ScreenWidth / 2) - (al_get_bitmap_width(rules)/2) , 100, 0);
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, ScreenHeight - 150, ALLEGRO_ALIGN_CENTRE,
 					"Press any key to continue or ESC to exit...");
 				al_draw_text(font, al_color_name("white"), ScreenWidth / 2, ScreenHeight - 100, ALLEGRO_ALIGN_CENTRE,
-					"Created by Drew Barrett");
+					"Created by Drew Barrett and Dakota Robey");
 			}
 			else {
 				al_get_mouse_state(&state);
@@ -149,6 +149,6 @@ int init() {
 		fprintf(stderr, "Could not load sample from soundtrack.mp3!\n");
 		return -1;
 	}
-	al_play_sample(soundtrack, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	al_play_sample(soundtrack, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 	updateLoad("finished loading!");
 }
