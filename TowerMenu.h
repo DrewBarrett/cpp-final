@@ -18,10 +18,12 @@ class TowerMenu
     public:
         /** Default constructor */
         TowerMenu();
-        void draw(ALLEGRO_MOUSE_STATE);
+        void draw(ALLEGRO_MOUSE_STATE, std::string *, std::string *, int);
         void disable();
         void enable();
+		int getCost() { return cost; }
 		bool GetEnabled() { return enabled; }
+		std::string GetHover() { return hover; }
         bool click();
         /** Access towers[10]
          * \return The current value of towers[10]
@@ -38,6 +40,7 @@ class TowerMenu
         std::vector<Button> towerList;
         std::string hover;
         bool enabled = false;
+		int cost = NULL;
 };
 
 #endif // TOWERMENU_H

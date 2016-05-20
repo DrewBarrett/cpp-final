@@ -17,12 +17,12 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     std::string title;
     std::string description;
 
-    mapgrid.draw(state, &title, &description);
-    towermenu.draw(state);
+    mapgrid.draw(state, &title, &description, wavemanager.GetWaveInProgress());
+    towermenu.draw(state, &title, &description, money);
     descriptionbox.Draw(title, description);
-	wavepanel.Draw(state);
+	wavepanel.Draw(state, money, health);
 	//wave manager needs to be called last so enemies show up above grass!
-	wavemanager.update();
+	wavemanager.update(&money, &health);
 	if(!wavemanager.GetWaveInProgress())
 	{
 	    wavepanel.enable();
@@ -44,14 +44,31 @@ void GUI::MouseClicked()
         {
             towermenu.disable();
         }
-    }else if (towermenu.click() && towermenu.GetEnabled() && !wavemanager.GetWaveInProgress()){
-        mapgrid.GetClicked()->Setoccupied(3);
+    }else if (towermenu.click() && towermenu.GetEnabled() && !wavemanager.GetWaveInProgress() && towermenu.getCost() <= money){
+		if (towermenu.GetHover() == "Dale")
+		{
+			mapgrid.GetClicked()->Setoccupied(3);
+		}
+		else if (towermenu.GetHover() == "green")
+		{
+			mapgrid.GetClicked()->Setoccupied(5);
+		}
+		else if (towermenu.GetHover() == "orange")
+		{
+			mapgrid.GetClicked()->Setoccupied(6);
+		}
+		else if (towermenu.GetHover() == "wall")
+		{
+			mapgrid.GetClicked()->Setoccupied(2);
+		}
+		money -= towermenu.getCost();
 		towermenu.disable();
 		if (mapgrid.GetClicked()->IsPath() && !mapgrid.Pathfind()) {
 			//TODO: only call pathfinding if the tile is in the way of the path.
 			//building a tower here would cause the pathfinding to error! Hopefully because there is no available path...
 			mapgrid.GetClicked()->Setoccupied(0);
 			towermenu.enable();
+			money += towermenu.getCost();
 		}
 
     }

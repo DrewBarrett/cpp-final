@@ -7,7 +7,7 @@ class WavePanel
 {
 public:
 	WavePanel();
-	void Draw(ALLEGRO_MOUSE_STATE);
+	void Draw(ALLEGRO_MOUSE_STATE, int, int);
 	bool click();
 	void enable();
 	void disable();

@@ -8,10 +8,23 @@ Tower::Tower()
     y = 0;
 }
 
-Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos, ALLEGRO_SAMPLE* sample)
+Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos, ALLEGRO_SAMPLE* sample, std::string type)
 {
 	shootsound = sample;
-    firerate = 1;
+	if (type == "super") {
+		firerate = 1;
+		color = al_color_name("red");
+	}
+	else if (type == "green")
+	{
+		firerate = .5;
+		color = al_color_name("green");
+	}
+	else if (type == "orange")
+	{
+		firerate = .75;
+		color = al_color_name("orange");
+	}
     rotation = 0;
     enemies = memes;
     x = xPos;
@@ -43,6 +56,7 @@ void Tower::Update()
         {
             cooldown = 1;
 			al_play_sample(shootsound, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+			al_draw_line(x,y,target->GetX() + 70 / 2 ,target->GetY() + 70 / 2, color, 5);
             target->TakeDamage(1);
             target = NULL;//retarget after firing in case enemy is out of range
         }

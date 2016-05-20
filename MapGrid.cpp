@@ -34,7 +34,7 @@ MapGrid::MapGrid(std::vector<Enemy>* memes)
 	//Pathfind();
 }
 
-void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *description)
+void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *description, bool waveInProgress)
 {
     hover = NULL;
     for (int i = 0; i < GridHeight; i++)
@@ -47,20 +47,20 @@ void MapGrid::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string *d
             }
         }
     }
-    if(clicked != NULL){
+    if(clicked != NULL && !waveInProgress){
         clicked->draw(mouse);
         *title = clicked->GetName();
 		*description = clicked->GetDescription();
 		if (!clicked->IsParentNull()) {
-			std::string newDesc = "";
-			std::stringstream sstm;
-			sstm << "DEBUG: Parent X: " << clicked->GetParentX() << " Parent Y: " << clicked->GetParentY() << " My fScore: " << clicked->GetFScore() << " my gScore: " << clicked->GetGScore();
-			newDesc = sstm.str();
-			*description = newDesc;
+			//std::string newDesc = "";
+			//std::stringstream sstm;
+			//sstm << "DEBUG: Parent X: " << clicked->GetParentX() << " Parent Y: " << clicked->GetParentY() << " My fScore: " << clicked->GetFScore() << " my gScore: " << clicked->GetGScore();
+			//newDesc = sstm.str();
+			//*description = newDesc;
 		}
 
     }
-    if(hover != NULL){
+    if(hover != NULL && !waveInProgress){
         hover->draw(mouse);
     }
 	DrawPath();
@@ -124,7 +124,7 @@ bool MapGrid::Pathfind()
 
 	std::cout << "Starting pathfind..." << std::endl;
 	//https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
-	std::vector<GridSquare*> closedSet;//nodes that have allready been checked
+	std::vector<GridSquare*> closedSet;//nodes that have already been checked
 	std::vector<GridSquare*> openSet;//nodes that need to be evaluated
 
 
@@ -359,7 +359,7 @@ void MapGrid::DrawPath()
 		//std::cout << pathy.at(i) << std::endl;
 		//std::cout << pathx.at(i) << std::endl;
 		//std::cout << grid[pathy[i]][pathx[i]].Getx() << std::endl;
-		al_draw_filled_circle(grid[pathy[i]][pathx[i]].Getx() + (SideLength/2), grid[pathy[i]][pathx[i]].Gety() + (SideLength /2), SideLength / 4, al_color_name("red"));
+		al_draw_filled_circle(grid[pathy[i]][pathx[i]].Getx() + (SideLength/2), grid[pathy[i]][pathx[i]].Gety() + (SideLength /2), SideLength / 8, al_color_name("red"));
 		//std::cout << "drawed path circle" << std::endl;
 	}
 }

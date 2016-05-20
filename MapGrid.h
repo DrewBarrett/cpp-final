@@ -17,7 +17,7 @@ class MapGrid
         /** Default constructor */
 		MapGrid();
         MapGrid(std::vector<Enemy> *);
-        void draw(ALLEGRO_MOUSE_STATE, std::string*, std::string*);
+        void draw(ALLEGRO_MOUSE_STATE, std::string*, std::string*, bool);
         GridSquare* GetHover(){return hover;}
         GridSquare* GetClicked(){return clicked;}
         void SetClicked();

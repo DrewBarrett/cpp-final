@@ -181,5 +181,5 @@ int init() {
 		fprintf(stderr, "changing volume failed!");
 		return -1;
 	}
-	updateLoad("finished loading!");
+	updateLoad("loading gui! do not click!");
 }

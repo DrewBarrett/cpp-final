@@ -6,7 +6,7 @@ class WaveManager
 public:
 	WaveManager();
 	void AdvanceWave(std::vector<int>, std::vector<int>);
-	void update();
+	void update(int*,int*);
 	bool GetWaveInProgress() {return waveInProgress;}
 	int* GetWavePointer() {return &wave;}
 	std::vector<Enemy>* GetEnemies() { return &enemies; }

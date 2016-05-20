@@ -23,6 +23,8 @@ class GUI
 		std::vector<int> pathx;
 		std::vector<int> pathy;
 		std::vector<Enemy> *enemies;
+		int money = 120;
+		int health = 15;
 };
 
 #endif // GUI_H

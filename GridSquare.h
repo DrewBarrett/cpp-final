@@ -91,7 +91,7 @@ class GridSquare
 		int gridY = -1;
 		int gScore;
 		int fScore;
-        int sideLength; //!< Member variable "sideLength"
+        double sideLength; //!< Member variable "sideLength"
         int occupied = 0; //!< Member variable "occupied"
         ALLEGRO_COLOR color; //!< Member variable "color"
 		ALLEGRO_SAMPLE *shootsound;

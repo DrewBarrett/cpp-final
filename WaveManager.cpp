@@ -26,7 +26,7 @@ void WaveManager::AdvanceWave(std::vector<int> pathx, std::vector<int> pathy)
     waveInProgress = true;
 }
 
-void WaveManager::update()
+void WaveManager::update(int *money, int *health)
 {
     timer++;
     for(int i = 0; i < enemies.size(); i++)
@@ -45,16 +45,19 @@ void WaveManager::update()
             std::cout << "erasing enemy" << std::endl;
             enemies.erase(enemies.begin()+i);
             numGone++;
+			*health -= 1;
         }
         if(status == 3)
         {
             std::cout << "dead enemy erasing" << std::endl;
             enemies.erase(enemies.begin()+i);
             numGone++;
+			*money += 25;
         }
     }
     if(enemies.size() == 0)
     {
         waveInProgress = false;
+		//*money += 100;
     }
 }

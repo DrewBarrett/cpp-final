@@ -46,7 +46,7 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
         {
             al_draw_filled_rectangle(x,y,x+sideLength,y+sideLength,al_color_name("gray"));
         }
-        if (occupied != 2 && occupied !=3)
+        if (occupied == 4 || occupied == 1 || occupied == 0)
         {
             //tower.Update();
             al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
@@ -57,6 +57,7 @@ bool GridSquare::draw(ALLEGRO_MOUSE_STATE state)
             tower.Update();
             //al_draw_scaled_bitmap(bg, 0, 0, al_get_bitmap_width(bg), al_get_bitmap_width(bg), x, y, sideLength, sideLength, 0);
             al_draw_scaled_rotated_bitmap(bg, al_get_bitmap_width(bg)/2, al_get_bitmap_width(bg)/2, x + sideLength/2, y+sideLength/2, sideLength/al_get_bitmap_width(bg),sideLength/al_get_bitmap_width(bg), tower.Getrotation(),0);
+			//al_draw_scaled_rotated_bitmap(bg, al_get_bitmap_width(bg) / 2, al_get_bitmap_width(bg) / 2, x + sideLength / 2, y + sideLength / 2, al_get_bitmap_width(bg) / sideLength, al_get_bitmap_width(bg) / sideLength, tower.Getrotation(), 0);
         }
     }
     al_draw_rectangle(x, y, x+sideLength, y+sideLength, color, 1);
@@ -68,15 +69,27 @@ void GridSquare::Setoccupied(int val)
     occupied = val;
     switch(occupied)
     {
+		case 6:
+			name = "Laser tower";
+			description = "This is the second cheapest tower in the game.";
+			bg = al_load_bitmap("TowerOrange.png");
+			tower = Tower(enemies, x + (sideLength / 2), y + (sideLength / 2), shootsound, "orange");
+			break;
+		case 5:
+			name = "Standard tower";
+			description = "This is the cheapest tower in the game.";
+			bg = al_load_bitmap("greenTower.png");
+			tower = Tower(enemies, x + (sideLength / 2), y + (sideLength / 2), shootsound, "green");
+			break;
 		case 4:
 			name = "End";
 			description = "This is where the enemies are trying to go";
 			break;
         case 3:
-            name = "Gun Tower";
-            description = "A standard tower that shoots the enemies.";
+            name = "Super Tower";
+            description = "The best tower in the game.";
             bg = al_load_bitmap("tower01.png");
-            tower = Tower(enemies, x+(sideLength/2), y+(sideLength/2),shootsound);
+            tower = Tower(enemies, x+(sideLength/2), y+(sideLength/2),shootsound,"super");
 			//TODO: dont reload the bitmap every time!
             break;
         case 2:

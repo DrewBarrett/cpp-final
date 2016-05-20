@@ -10,7 +10,7 @@ class Tower
     public:
         /** Default constructor */
         Tower();
-        Tower(std::vector<Enemy> *, int, int, ALLEGRO_SAMPLE*);
+        Tower(std::vector<Enemy> *, int, int, ALLEGRO_SAMPLE*, std::string);
         /** Access firerate
          * \return The current value of firerate
          */
@@ -46,6 +46,7 @@ class Tower
         double cooldown = 0;
         std::vector<Enemy>* enemies = NULL;
 		ALLEGRO_SAMPLE *shootsound;
+		ALLEGRO_COLOR color;
         int x;
         int y;
 };
