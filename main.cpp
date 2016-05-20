@@ -18,6 +18,7 @@
 int init();
 ALLEGRO_DISPLAY *display = NULL;
 ALLEGRO_SAMPLE *soundtrack = NULL;
+ALLEGRO_FONT *font = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
 ALLEGRO_TIMER *timer;
 ALLEGRO_MOUSE_STATE state;
@@ -25,11 +26,7 @@ ALLEGRO_MOUSE_STATE state;
 int main(int argc, char **argv)
 {
 	init();
-	ALLEGRO_FONT *font = al_load_font("comic.ttf", 20, 0);
-	if (!font) {
-		fprintf(stderr, "Could not load 'comic.ttf'.\n");
-		return -1;
-	}
+	
 	queue = al_create_event_queue();
 	al_register_event_source(queue, al_get_keyboard_event_source());
 	al_register_event_source(queue, al_get_mouse_event_source());
@@ -91,8 +88,14 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-int init() {
+void updateLoad(const char *text) {
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_draw_text(font, al_color_name("white"), ScreenWidth / 2, 0, ALLEGRO_ALIGN_CENTRE, text);
+	al_flip_display();
+}
 
+int init() {
+	
 	if (!al_init())
 	{
 		fprintf(stderr, "failed to initialize allegro!\n");
@@ -104,31 +107,42 @@ int init() {
 		fprintf(stderr, "failed to create display!\n");
 		return -1;
 	}
-	al_clear_to_color(al_map_rgb(0, 0, 0));
+	
+	al_init_font_addon();
+	al_init_ttf_addon();
+	font = al_load_font("comic.ttf", 20, 0);
+	if (!font) {
+		fprintf(stderr, "Could not load 'comic.ttf'.\n");
+		return -1;
+	}
+	updateLoad("loading image addon...");
 	al_init_image_addon();
+	updateLoad("loading primitives addon...");
 	if (!al_init_primitives_addon()) {
 		fprintf(stderr, "failed to initialize primitives!\n");
 		return -1;
 	}
-	al_init_font_addon();
-	al_init_ttf_addon();
+	updateLoad("installing mouse...");
 	al_install_mouse();
+	updateLoad("installing keyboard...");
 	al_install_keyboard();
+	updateLoad("installing audio...");
 	if (!al_install_audio()) {
 		fprintf(stderr, "failed to initialize audio!\n");
 		return -1;
 	}
-
+	updateLoad("initializing audio codecs...");
 	if (!al_init_acodec_addon()) {
 		fprintf(stderr, "failed to initialize audio codecs!\n");
 		return -1;
 	}
+	updateLoad("reserving audio samples...");
 	//change this for amount of simultanious noises playing
 	if (!al_reserve_samples(2)) {
 		fprintf(stderr, "failed to reserve samples!\n");
 		return -1;
 	}
-
+	updateLoad("loading soundtrack...");
 	soundtrack = al_load_sample("soundtrack.ogg");
 
 	if (!soundtrack) {
@@ -136,4 +150,5 @@ int init() {
 		return -1;
 	}
 	al_play_sample(soundtrack, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
+	updateLoad("finished loading!");
 }
