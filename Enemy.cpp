@@ -14,6 +14,11 @@ Enemy::Enemy(int type, std::vector<int> x1, std::vector<int> y1)
 		health = 10;
 		speed = 1;
 	}
+	if (type == 2)
+	{
+		health = 20;
+		speed = 2;
+	}
 }
 
 void Enemy::Enable()
