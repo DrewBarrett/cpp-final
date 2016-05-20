@@ -51,6 +51,8 @@ public:
 	 * \return The current value of height
 	 */
 	int Getheight() { return height; }
+
+	void SetColor(ALLEGRO_COLOR val) { preferredcolor = val; }
 	std::string GetTowerTitle() {return towerTitle;}
 	std::string GetTowerDesc() {return towerDesc;}
 	/** Set height
@@ -71,6 +73,7 @@ private:
 	std::string towerTitle = "no tower in button";
 	std::string towerDesc = "no tower in button to describe";
 	ALLEGRO_COLOR color;
+	ALLEGRO_COLOR preferredcolor = al_color_name("white");
 	ALLEGRO_BITMAP *img;
 };
 

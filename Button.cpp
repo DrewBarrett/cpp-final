@@ -32,7 +32,7 @@ Button::Button(int x1, int y1, int w1, ALLEGRO_BITMAP *sprite, std::string title
 int Button::draw(ALLEGRO_MOUSE_STATE state)
 {
     int thickness = 1;
-    color = al_color_name("white");
+	color = preferredcolor;
     int checkedMouse = checkMouse(state);
     ALLEGRO_COLOR fontcolor = al_color_name("white");
     if(enabled){

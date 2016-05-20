@@ -171,15 +171,16 @@ int init() {
 		fprintf(stderr, "Could not load sample from soundtrack.mp3!\n");
 		return -1;
 	}
+	if (!al_set_audio_stream_gain(soundtrack, .5))
+	{
+		fprintf(stderr, "changing volume failed!");
+		return -1;
+	}
 	//al_play_sample(soundtrack, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 	if (!al_attach_audio_stream_to_mixer(soundtrack, mixer)) {
 		fprintf(stderr, "al_attach_audio_stream_to_mixer failed.\n");
 		return -1;
 	}
-	if (!al_set_audio_stream_gain(soundtrack, .05))
-	{
-		fprintf(stderr, "changing volume failed!");
-		return -1;
-	}
+	
 	updateLoad("loading gui! do not click!");
 }

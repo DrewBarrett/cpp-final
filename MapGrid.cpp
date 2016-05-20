@@ -329,7 +329,7 @@ bool MapGrid::Pathfind()
 	return false;
 }
 
-void MapGrid::GetPath(std::vector<int> *x, std::vector<int> *y)
+void MapGrid::GetPath(std::vector<double> *x, std::vector<double> *y)
 {
 	x->clear();
 	y->clear();

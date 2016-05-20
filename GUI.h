@@ -20,8 +20,8 @@ class GUI
         DescriptionBox descriptionbox;
 		WavePanel wavepanel;
 		WaveManager wavemanager;
-		std::vector<int> pathx;
-		std::vector<int> pathy;
+		std::vector<double> pathx;
+		std::vector<double> pathy;
 		std::vector<Enemy> *enemies;
 		int money = 120;
 		int health = 15;

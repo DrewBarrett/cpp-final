@@ -33,9 +33,20 @@ void TowerMenu::draw(ALLEGRO_MOUSE_STATE mouse, std::string *title, std::string 
         }
     }*/
     for(std::vector<Button>::iterator it = towerList.begin(); it != towerList.end(); ++it){
-        if(it->draw(mouse)==2){
+		if (it->GetTowerTitle() == "wall" && money >= 5)
+			it->SetColor(al_color_name("lawngreen"));
+		else if (it->GetTowerTitle() == "green" && money >= 100)
+			it->SetColor(al_color_name("lawngreen"));
+		else if (it->GetTowerTitle() == "orange" && money >= 250)
+			it->SetColor(al_color_name("lawngreen"));
+		else if (it->GetTowerTitle() == "Dale" && money >= 500)
+			it->SetColor(al_color_name("lawngreen"));
+		else
+			it->SetColor(al_color_name("red"));
+		if(it->draw(mouse)==2){
             hover = it->GetTowerTitle();
         }
+		
     }
 	if (hover == "green")
 	{

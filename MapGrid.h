@@ -25,7 +25,7 @@ class MapGrid
 		bool Pathfind();
 		void ReconstructPath();
 		void DrawPath();
-		void GetPath(std::vector<int> *,std::vector<int> *);
+		void GetPath(std::vector<double> *,std::vector<double> *);
 		int EstimateCostToFinish(int x, int y);
 		//void setEnemies(std::vector<Enemy> *);
     protected:

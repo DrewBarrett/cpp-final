@@ -11,21 +11,21 @@
 class Enemy
 {
 public:
-	Enemy(int type, std::vector<int> x, std::vector<int> y);
+	Enemy(double type, std::vector<double> x, std::vector<double> y);
 	int Draw();
 	void Enable();
 	void TakeDamage(int val) { health -= val;}
 	bool IsAlive() { return health > 0;}
 	bool isEnabled() {return enabled;}
-	int GetX() { return x; }
-	int GetY() { return y; }
+	double GetX() { return x; }
+	double GetY() { return y; }
 private:
 	int health;
-	int speed;
-	int x;
-	int y;
+	double speed;
+	double x;
+	double y;
 	bool enabled = false;
-	std::vector<int> pathx;
-	std::vector<int> pathy;
+	std::vector<double> pathx;
+	std::vector<double> pathy;
 };
 

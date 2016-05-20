@@ -19,6 +19,10 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 
     mapgrid.draw(state, &title, &description, wavemanager.GetWaveInProgress());
     towermenu.draw(state, &title, &description, money);
+	if (health <= 0) {
+		title = "Game Over";
+		description = "Try to get to a further wave next time!";
+	}
     descriptionbox.Draw(title, description);
 	wavepanel.Draw(state, money, health);
 	//wave manager needs to be called last so enemies show up above grass!
@@ -31,6 +35,8 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 
 void GUI::MouseClicked()
 {
+	if (health <= 0)
+		return;
     GridSquare *gs = mapgrid.GetHover();
     if(gs != NULL){
         mapgrid.SetClicked();
@@ -64,7 +70,6 @@ void GUI::MouseClicked()
 		money -= towermenu.getCost();
 		towermenu.disable();
 		if (mapgrid.GetClicked()->IsPath() && !mapgrid.Pathfind()) {
-			//TODO: only call pathfinding if the tile is in the way of the path.
 			//building a tower here would cause the pathfinding to error! Hopefully because there is no available path...
 			mapgrid.GetClicked()->Setoccupied(0);
 			towermenu.enable();
