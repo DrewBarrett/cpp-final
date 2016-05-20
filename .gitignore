@@ -231,3 +231,5 @@ ModelManifest.xml
 *.filters
 *.db
 *.opendb
+/compiled
+/real realaseee
