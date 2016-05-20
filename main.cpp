@@ -5,8 +5,6 @@
 #include "allegro5/allegro_primitives.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
-#include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_acodec.h>
 #include "Button.h"
 #include "TowerMenu.h"
 #include "MapGrid.h"
@@ -17,7 +15,6 @@
 #define ScreenHeight 768
 int init();
 ALLEGRO_DISPLAY *display = NULL;
-ALLEGRO_SAMPLE *soundtrack = NULL;
 ALLEGRO_EVENT_QUEUE *queue;
 ALLEGRO_TIMER *timer;
 ALLEGRO_MOUSE_STATE state;
@@ -113,26 +110,4 @@ int init(){
     al_init_ttf_addon();
     al_install_mouse();
     al_install_keyboard();
-	if (!al_install_audio()) {
-		fprintf(stderr, "failed to initialize audio!\n");
-		return -1;
-	}
-
-	if (!al_init_acodec_addon()) {
-		fprintf(stderr, "failed to initialize audio codecs!\n");
-		return -1;
-	}
-	//change this for amount of simultanious noises playing
-	if (!al_reserve_samples(2)) {
-		fprintf(stderr, "failed to reserve samples!\n");
-		return -1;
-	}
-
-	soundtrack = al_load_sample("soundtrack.ogg");
-
-	if (!soundtrack) {
-		fprintf(stderr, "Could not load sample from soundtrack.mp3!\n");
-		return -1;
-	}
-	al_play_sample(soundtrack, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, NULL);
 }
