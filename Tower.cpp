@@ -26,7 +26,7 @@ void Tower::Update()
 	}
 	if (enemies != NULL && enemies->size() > 0 && (target == NULL || !target->isEnabled()))
 	{
-		std::cout << "target set" << std::endl;
+		//std::cout << "target set" << std::endl;
 		target = &enemies->at(0);
 	}
 	if (target != NULL && target->isEnabled()) {
@@ -35,6 +35,20 @@ void Tower::Update()
 		double opposite = ((target->GetX() + 70/2) - x);
 		//rotation = atan(opposite / adjacent);
 		rotation = atan2(opposite,adjacent);
-		std::cout << "Rotation set: " << opposite << " " << adjacent << " " << rotation << std::endl;
+		//std::cout << "Rotation set: " << opposite << " " << adjacent << " " << rotation << std::endl;
+
+        if(cooldown <= 0)
+        {
+            cooldown = 1;
+            target->TakeDamage(1);
+            target = NULL;//retarget after firing in case enemy is out of range
+        }
+		else{
+            cooldown -= firerate * .1;
+		}
+		/*if(!target->IsAlive())
+        {
+            target = NULL;
+        }*/
 	}
 }

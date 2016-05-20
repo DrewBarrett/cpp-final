@@ -14,6 +14,8 @@ public:
 	Enemy(int type, std::vector<int> x, std::vector<int> y);
 	int Draw();
 	void Enable();
+	void TakeDamage(int val) { health -= val;}
+	bool IsAlive() { return health > 0;}
 	bool isEnabled() {return enabled;}
 	int GetX() { return x; }
 	int GetY() { return y; }

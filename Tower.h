@@ -15,11 +15,11 @@ class Tower
 
         void Update();
 
-        int Getfirerate() { return firerate; }
+        double Getfirerate() { return firerate; }
         /** Set firerate
          * \param val New value to set
          */
-        void Setfirerate(int val) { firerate = val; }
+        double Setfirerate(int val) { firerate = val; }
         /** Access *target
          * \return The current value of *target
          */
@@ -38,9 +38,10 @@ class Tower
         void Setrotation(int val) { rotation = val; }
     protected:
     private:
-        int firerate; //!< Member variable "firerate"
+        double firerate; //!< Member variable "firerate"
         Enemy *target = NULL; //!< Member variable "*target"
         double rotation; //!< Member variable "rotation"
+        double cooldown = 0;
         std::vector<Enemy>* enemies = NULL;
         int x;
         int y;
