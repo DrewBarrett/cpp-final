@@ -21,13 +21,13 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
     towermenu.draw(state, &title, &description, money);
 	if (health <= 0) {
 		title = "Game Over";
-		description = "Try to get to a further wave next time!";
+		description = "Try to get to a further wave next time! Press Escape to quit.";
 	}
     descriptionbox.Draw(title, description);
 	wavepanel.Draw(state, money, health);
 	//wave manager needs to be called last so enemies show up above grass!
 	wavemanager.update(&money, &health);
-	if(!wavemanager.GetWaveInProgress())
+	if(!wavemanager.GetWaveInProgress() && health > 0)
 	{
 	    wavepanel.enable();
 	}
