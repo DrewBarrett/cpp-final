@@ -9,6 +9,7 @@ GUI::GUI()
     //descriptionbox = DescriptionBox();
 	mapgrid.Pathfind();
 	//mapgrid.setEnemies();
+	wavepanel.setWavePointer(wavemanager.GetWavePointer());
 }
 
 void GUI::Draw(ALLEGRO_MOUSE_STATE state)
@@ -22,6 +23,10 @@ void GUI::Draw(ALLEGRO_MOUSE_STATE state)
 	wavepanel.Draw(state);
 	//wave manager needs to be called last so enemies show up above grass!
 	wavemanager.update();
+	if(!wavemanager.GetWaveInProgress())
+	{
+	    wavepanel.enable();
+	}
 }
 
 void GUI::MouseClicked()
@@ -31,7 +36,7 @@ void GUI::MouseClicked()
         mapgrid.SetClicked();
         gs->SetClicked(true);
 		//mapgrid.Pathfind();
-        if (gs->Getoccupied() == 0)
+        if (gs->Getoccupied() == 0 && !wavemanager.GetWaveInProgress())
         {
             towermenu.enable();
         }
@@ -39,7 +44,7 @@ void GUI::MouseClicked()
         {
             towermenu.disable();
         }
-    }else if (towermenu.click() && towermenu.GetEnabled()){
+    }else if (towermenu.click() && towermenu.GetEnabled() && !wavemanager.GetWaveInProgress()){
         mapgrid.GetClicked()->Setoccupied(3);
 		towermenu.disable();
 		if (mapgrid.GetClicked()->IsPath() && !mapgrid.Pathfind()) {
@@ -48,12 +53,13 @@ void GUI::MouseClicked()
 			mapgrid.GetClicked()->Setoccupied(0);
 			towermenu.enable();
 		}
-		
+
     }
-    else if (wavepanel.click())
+    else if (wavepanel.click() && !wavemanager.GetWaveInProgress())
     {
         mapgrid.GetPath(&pathx, &pathy);
         wavemanager.AdvanceWave(pathx, pathy);
+        wavepanel.disable();
     }
     else
     {

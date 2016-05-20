@@ -23,6 +23,7 @@ void WaveManager::AdvanceWave(std::vector<int> pathx, std::vector<int> pathy)
     numGone = 0;
     //numEnabled++;
     timer = 0;
+    waveInProgress = true;
 }
 
 void WaveManager::update()
@@ -51,5 +52,9 @@ void WaveManager::update()
             enemies.erase(enemies.begin()+i);
             numGone++;
         }
+    }
+    if(enemies.size() == 0)
+    {
+        waveInProgress = false;
     }
 }
