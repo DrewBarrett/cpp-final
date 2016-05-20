@@ -9,6 +9,7 @@
 #define GridWidth 10
 #define GridHeight 8
 #define SideLength 70
+#include <iostream>
 
 class MapGrid
 {

@@ -2,7 +2,7 @@
 
 MapGrid::MapGrid()
 {
-	printf("empty map grid created\n");
+	//printf("empty map grid created\n");
 }
 
 MapGrid::MapGrid(std::vector<Enemy>* memes)
@@ -77,7 +77,7 @@ void MapGrid::SetClicked()
 
 //void MapGrid::setEnemies()
 //{
-//    
+//
 //}
 
 bool MapGrid::Pathfind()
@@ -122,12 +122,12 @@ bool MapGrid::Pathfind()
 	////we were able to find a path so return true
 	//return true;
 
-	printf("Starting pathfind...\n");
+	std::cout << "Starting pathfind..." << std::endl;
 	//https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
 	std::vector<GridSquare*> closedSet;//nodes that have allready been checked
 	std::vector<GridSquare*> openSet;//nodes that need to be evaluated
 
-	
+
 
 
 	//reset start and finish because they dont work otherwise?

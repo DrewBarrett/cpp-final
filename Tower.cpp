@@ -20,13 +20,13 @@ Tower::Tower(std::vector<Enemy>* memes, int xPos, int yPos)
 void Tower::Update()
 {
     //rotation++;
-	if (enemies == NULL) 
+	if (enemies == NULL)
 	{
-		printf("NULL enemies vector! Maybe the wave hasnt started...\n");
+		//printf("NULL enemies vector! Maybe the wave hasnt started...\n");
 	}
 	if (enemies != NULL && enemies->size() > 0 && (target == NULL || !target->isEnabled()))
 	{
-		printf("target set\n");
+		std::cout << "target set" << std::endl;
 		target = &enemies->at(0);
 	}
 	if (target != NULL && target->isEnabled()) {
